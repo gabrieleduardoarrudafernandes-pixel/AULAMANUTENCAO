@@ -133,6 +133,7 @@ class App {
         this.installed = new Set();
         this.step = 0;
         this.selected = null;
+        this.isDragging = false;
         this.renderParts();
         this.bindEvents();
         this.updateUI();
@@ -166,13 +167,16 @@ class App {
           <div class="pc-name">${p.name}</div>
           <div class="pc-cat">${p.category}</div>
         </div>`;
-            card.addEventListener("click", () => this.selectPart(id));
+            card.addEventListener("click", () => { if (!this.isDragging)
+                this.selectPart(id); });
             card.addEventListener("dragstart", (e) => {
+                this.isDragging = true;
                 e.dataTransfer.setData("text/plain", id);
                 e.dataTransfer.effectAllowed = "move";
                 card.style.opacity = "0.5";
             });
-            card.addEventListener("dragend", () => { card.style.opacity = ""; });
+            card.addEventListener("dragend", () => { card.style.opacity = ""; this.isDragging = false; });
+            card.draggable = true;
             list.appendChild(card);
         });
     }
@@ -184,6 +188,18 @@ class App {
         document.getElementById("btn-action").onclick = () => this.actionPart();
         document.getElementById("btn-modal").onclick = () => this.hideModal();
         document.getElementById("btn-celebration-close").onclick = () => { this.reset(); this.hideCelebration(); };
+        // Drop on workbench for motherboard
+        const wb = document.getElementById("workbench");
+        wb.addEventListener("dragover", (e) => { e.preventDefault(); });
+        wb.addEventListener("drop", (e) => {
+            e.preventDefault();
+            const partId = e.dataTransfer.getData("text/plain");
+            if (partId === "motherboard") {
+                this.selectPart(partId);
+                if (this.mode === "assemble")
+                    this.actionPart();
+            }
+        });
         // Drag-drop on each slot
         document.querySelectorAll(".slot-zone").forEach((el) => {
             const slotId = el.dataset.slot;

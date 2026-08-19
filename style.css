@@ -135,7 +135,7 @@ main{
   border-radius:12px;
   opacity:.15;
   transition:opacity .5s, border-color .5s;
-  pointer-events:none;
+  pointer-events:auto;
 }
 .motherboard-bg.visible{opacity:1;pointer-events:auto}
 .motherboard-bg.placed{background:#bbf7d0;border-color:#047857}
