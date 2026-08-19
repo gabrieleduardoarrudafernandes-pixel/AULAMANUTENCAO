@@ -1,0 +1,14 @@
+{
+  "name": "projetoaula-montagem-microcomputadores",
+  "version": "1.0.0",
+  "description": "Ferramenta didática interativa para ensino de montagem e desmontagem de microcomputadores",
+  "scripts": {
+    "build": "npx tsc",
+    "serve": "python3 -m http.server 8080",
+    "start": "npx tsc && python3 -m http.server 8080"
+  },
+  "keywords": ["educacao", "montagem", "computadores"],
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
+}
