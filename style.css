@@ -340,6 +340,53 @@ footer{
 .flash{animation:flash .5s ease}
 @keyframes flash{0%{box-shadow:0 0 0 0 rgba(16,185,129,.6)}50%{box-shadow:0 0 0 12px rgba(16,185,129,0)}100%{box-shadow:var(--sh)}}
 
+/* ---- TABELA COMPARATIVA ---- */
+.info-table-block{border-left:3px solid var(--c-cpu)}
+.info-tabela{display:flex;flex-direction:column;gap:.5rem}
+.tabela-row{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.3rem}
+.tabela-label{
+  width:100%;font-size:.7rem;font-weight:800;color:var(--c-cpu);
+  text-transform:uppercase;letter-spacing:.5px;margin-top:.15rem;
+}
+.tabela-chip{
+  font-size:.65rem;padding:.2rem .45rem;border-radius:6px;
+  background:var(--c-cpu-bg);color:var(--c-cpu);
+  border:1px solid rgba(37,99,235,.15);line-height:1.3;
+}
+.tabela-empty{font-size:.75rem;color:var(--g400);font-style:italic}
+
+/* ---- BALLOON / TOOLTIP ---- */
+.balloon{
+  position:fixed;z-index:150;max-width:340px;
+  background:#fff;border-radius:14px;padding:1rem;
+  box-shadow:0 8px 32px rgba(0,0,0,.2);
+  border:2px solid var(--c-ram);
+  animation:balloonIn .3s ease;
+  pointer-events:auto;
+}
+.balloon::before{
+  content:'';position:absolute;top:-8px;left:30px;
+  width:14px;height:14px;background:#fff;
+  border-top:2px solid var(--c-ram);border-left:2px solid var(--c-ram);
+  transform:rotate(45deg);
+}
+.balloon-title{
+  font-size:.85rem;font-weight:800;color:var(--c-ram);
+  margin-bottom:.4rem;display:flex;align-items:center;gap:.3rem;
+}
+.balloon-text{font-size:.75rem;color:var(--g700);line-height:1.5;margin-bottom:.5rem}
+.balloon-highlight{
+  background:var(--c-ram-bg);border-radius:8px;padding:.4rem .6rem;
+  font-size:.7rem;color:var(--c-ram);font-weight:600;
+  border:1px solid rgba(124,58,237,.2);
+}
+.balloon-close{
+  position:absolute;top:6px;right:8px;background:none;border:none;
+  font-size:1rem;color:var(--g400);cursor:pointer;
+}
+.balloon-close:hover{color:var(--g700)}
+@keyframes balloonIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
 /* ---- RESPONSIVE ---- */
 @media(max-width:900px){
   main{grid-template-columns:1fr;grid-template-rows:auto 1fr auto}

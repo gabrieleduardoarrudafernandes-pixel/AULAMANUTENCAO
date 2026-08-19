@@ -11,7 +11,17 @@ const PARTS = [
         conn: "Primeira peca a ser instalada. Vai encaixada sobre os parafusos de suporte (standoffs) dentro do gabinete.",
         care: "Segure pelas bordas, nunca toque nos circuitos metalicos. Use pulseira antiestatica. Verifique os parafusos sem exagero.",
         curi: "Uma placa-mae moderna pode ter mais de 10 camadas de circuitos e milhoes de trilhas de cobre!",
-        slot: "motherboard", spec: "ATX - Chipset B660"
+        slot: "motherboard", spec: "ATX - Chipset B660",
+        tabela: [
+            { label: "Formato", opcoes: ["ATX (padrao, 305x244mm)", "Micro-ATX (menor, 244x244mm)", "Mini-ITX (compacto, 170x170mm)"] },
+            { label: "Socket Intel", opcoes: ["LGA 1700 (12a/13a gen)", "LGA 1200 (10a/11a gen)", "LGA 1151 (6a/7a/8a/9a gen)"] },
+            { label: "Socket AMD", opcoes: ["AM5 (Ryzen 7000+)", "AM4 (Ryzen 1000-5000)"] },
+            { label: "Chipset (Intel)", opcoes: ["Z790 (overclock)", "B760 (custo-beneficio)", "H610 (basico)"] },
+            { label: "Chipset (AMD)", opcoes: ["X670 (premium)", "B650 (intermediario)", "A620 (basico)"] },
+            { label: "Slots RAM", opcoes: ["2 slots (4GB+4GB)", "4 slots (8GB+8GB+8GB+8GB)"] },
+            { label: "Slots PCIe", opcoes: ["1x PCIe x16 (GPU)", "1x PCIe x1 (extras)"] },
+            { label: "Conectores", opcoes: ["SATA III (SSD/HDD)", "M.2 NVMe (SSD rapido)", "USB 3.0 frontal", "Audio HD"] }
+        ]
     },
     {
         id: "cpu", name: "Processador (CPU)", category: "Cerebro do Computador",
@@ -21,7 +31,16 @@ const PARTS = [
         conn: "Encaixado no soquete da placa-mae. Alinhe o pino dourado (triangulo) com a marca no soquete. Depois baixe a trava.",
         care: "NUNCA force o processador. Nunca toque nos contatos dourados. Verifique o pino de alinhamento. E a peca mais sensivel.",
         curi: "Um processador moderno tem bilhoes de transistores, cada um menor que um virus!",
-        slot: "cpu", spec: "Intel Core i5-12400"
+        slot: "cpu", spec: "Intel Core i5-12400",
+        tabela: [
+            { label: "Fabricante", opcoes: ["Intel (Core i3/i5/i7/i9)", "AMD (Ryzen 3/5/7/9)"] },
+            { label: "Nucleos/Threads", opcoes: ["4 nucleos / 8 threads (basico)", "6 nucleos / 12 threads (intermediario)", "8+ nucleos / 16+ threads (premium)"] },
+            { label: "Frequencia", opcoes: ["3.0 GHz base / 4.5 GHz turbo (i5)", "3.4 GHz base / 5.2 GHz turbo (i7)", "3.2 GHz base / 5.8 GHz turbo (i9)"] },
+            { label: "Cache", opcoes: ["12MB L3 (i5)", "20MB L3 (i7)", "30MB+ L3 (i9)"] },
+            { label: "TDP (Consumo)", opcoes: ["65W (economico)", "125W (desempenho)", "150W+ (extreme)"] },
+            { label: "Placa de Video integrada?", opcoes: ["Sim (Intel UHD / AMD Vega)", "Nao (precisa de GPU dedicada)"] },
+            { label: "Cuidados", opcoes: ["NUNCA force no soquete", "Nao toque nos contatos dourados", "Verifique pino de alinhamento"] }
+        ]
     },
     {
         id: "ram", name: "Memoria RAM", category: "Memoria de Trabalho",
@@ -31,7 +50,15 @@ const PARTS = [
         conn: "Encaixada nos slots de memoria da placa-mae. Possui um entalhe assimetrico que impede de ser colocada ao contrario. Ate clicar as travas.",
         care: "Segure pela borda plastica. Verifique a orientacao do entalhe. Pressione ate ouvir o clique. Nao misture memorias de velocidades diferentes.",
         curi: "A RAM DDR5 pode transferir dados a 6.400 MHz — como ler 50 livros por segundo!",
-        slot: "ram", spec: "DDR4 3200MHz - 16GB (2x8GB)"
+        slot: "ram", spec: "DDR4 3200MHz - 16GB (2x8GB)",
+        tabela: [
+            { label: "Geracao", opcoes: ["DDR4 (2014-2020, ate 3200MHz)", "DDR5 (2020+, ate 6400MHz+)"] },
+            { label: "Capacidade", opcoes: ["4GB (basico, nao recomendado)", "8GB (minimo para uso basico)", "16GB (ideal para maioria)", "32GB (gamer/editor de video)", "64GB+ (workstation/render)"] },
+            { label: "Dual Channel", opcoes: ["1 peca = canal unico (lento)", "2 pecas = dual channel (2x mais rapido!)"] },
+            { label: "Velocidade", opcoes: ["2666 MHz (basico)", "3200 MHz (intermediario)", "3600 MHz+ (gamer)"] },
+            { label: "Latencia (CAS)", opcoes: ["CL16 (padrao)", "CL14 (premium, mais rapido)", "CL18 (economico)"] },
+            { label: "Diferenca DDR4 vs DDR5", opcoes: ["DDR5: 2x mais rapida", "DDR5: mais eficiente energeticamente", "DDR5: capacidades maiores", "DDR4: mais barata e compativel"] }
+        ]
     },
     {
         id: "gpu", name: "Placa de Video (GPU)", category: "Processador Grafico",
@@ -41,7 +68,15 @@ const PARTS = [
         conn: "Encaixada no slot PCIe x16 (o mais longo) da placa-mae. Pode precisar de cabos de energia direto da fonte (6 ou 8 pinos).",
         care: "Peca pesada, segure com firmeza. Verifique a trava do slot PCIe. Conecte cabos de energia antes de fixar no gabinete.",
         curi: "As GPUs fazem bilhoes de calculos matematicos por segundo, sendo usadas para IA e ciencia!",
-        slot: "gpu", spec: "NVIDIA RTX 3060 - 12GB"
+        slot: "gpu", spec: "NVIDIA RTX 3060 - 12GB",
+        tabela: [
+            { label: "Fabricante", opcoes: ["NVIDIA (GeForce RTX)", "AMD (Radeon RX)", "Intel (Arc)"] },
+            { label: "Memoria VRAM", opcoes: ["4GB (basico, 1080p leve)", "8GB (intermediario, 1080p)", "12GB (gamer, 1440p)", "16GB+ (premium, 4K)"] },
+            { label: "Modelo NVIDIA", opcoes: ["RTX 4060 (custo-beneficio)", "RTX 4070 (1440p)", "RTX 4080 (4K)", "RTX 4090 (extreme)"] },
+            { label: "Modelo AMD", opcoes: ["RX 7600 (1080p)", "RX 7800 XT (1440p)", "RX 7900 XTX (4K)"] },
+            { label: "Integrada vs Dedicada", opcoes: ["Integrada: no processador (basico)", "Dedicada: placa separada (gamer/editor)"] },
+            { label: "Consumo de Energia", opcoes: ["75W-150W (intermediario)", "200W-350W (gamer)", "Requer cabos PCIe 6/8 pinos"] }
+        ]
     },
     {
         id: "psu", name: "Fonte de Alimentacao (PSU)", category: "Energia do Sistema",
@@ -51,7 +86,15 @@ const PARTS = [
         conn: "Instalada na parte traseira do gabinete com 4 parafusos. Cabos: 24 pinos na placa-mae, 4/8 pinos no processador, SATA para SSD, PCIe para GPU.",
         care: "NUNCA abra a fonte — armazena energia perigosa. Verifique a chave seletora de tensao. Use sempre cabos originais.",
         curi: "Fontes 80 Plus Gold convertem ate 90% da energia, desperdicando apenas 10% como calor!",
-        slot: "psu", spec: "650W 80 Plus Gold - Modular"
+        slot: "psu", spec: "650W 80 Plus Gold - Modular",
+        tabela: [
+            { label: "Potencia", opcoes: ["450W (basico, sem GPU)", "550W (intermediario)", "650W (gamer medio)", "750W-850W (gamer alto)", "1000W+ (extreme/SLI)"] },
+            { label: "Eficiencia 80 Plus", opcoes: ["White: 80% eficiencia", "Bronze: 82-85% (custo-beneficio)", "Gold: 87-90% (recomendado)", "Platinum: 90-92% (premium)", "Titanium: 92-94% (extreme)"] },
+            { label: "Modularidade", opcoes: ["Nao modular: todos cabos fixos", "Semi-modular: cabos basicos fixos", "Modular: todos removiveis (melhor)"] },
+            { label: "Tensoes", opcoes: ["+3.3V (componentes baixa tensao)", "+5V (USB, SSD SATA)", "+12V (CPU, GPU, cooler)"] },
+            { label: "Protecoes", opcoes: ["OCP: protecao contra curto", "OVP: protecao contra alta tensao", "SCP: protecao contra curto-circuito", "OTP: protecao contra superaquecimento"] },
+            { label: "Cuidados", opcoes: ["NUNCA abra a fonte!", "Verifique chave seletora 110V/220V", "Use sempre cabos originais"] }
+        ]
     },
     {
         id: "storage", name: "Armazenamento (SSD)", category: "Memoria Permanente",
@@ -61,7 +104,15 @@ const PARTS = [
         conn: "SSD SATA: cabo de dados na placa-mae + cabo de energia na fonte. SSD M.2: inserido no angulo de 30 e apertado com parafuso.",
         care: "Para M.2: insira no angulo e aperte com parafuso. Para SATA: encaixe cabos com cuidado. Nunca derrube um HDD ligado.",
         curi: "Um SSD NVMe le dados a 7.000 MB/s — copia um filme HD em menos de 1 segundo!",
-        slot: "storage", spec: "SSD NVMe 500GB M.2"
+        slot: "storage", spec: "SSD NVMe 500GB M.2",
+        tabela: [
+            { label: "Tipo", opcoes: ["HDD: disco magnetico (lento, barato)", "SSD SATA: flash (rapido, acessivel)", "SSD NVMe M.2: flash ultra-rapido"] },
+            { label: "Velocidade Leitura", opcoes: ["HDD: 80-160 MB/s", "SSD SATA: 500-560 MB/s", "SSD NVMe: 3.500-7.000 MB/s"] },
+            { label: "Capacidade", opcoes: ["128GB (sistema basico)", "256GB (basico)", "512GB (ideal)", "1TB (gamer/editor)", "2TB+ (profissional)"] },
+            { label: "Formato Fisico", opcoes: ["3.5 polegadas (HDD gabinete)", "2.5 polegadas (SSD SATA)", "M.2 2280 (SSD NVMe, menor)"] },
+            { label: "Interface", opcoes: ["SATA III (6 Gbps, maximo 560 MB/s)", "PCIe Gen3 (3.500 MB/s)", "PCIe Gen4 (7.000 MB/s)", "PCIe Gen5 (12.000 MB/s)"] },
+            { label: "Diferenca HDD vs SSD", opcoes: ["SSD: 10-50x mais rapido que HDD", "SSD: sem pecas moveis, mais duravel", "HDD: mais barato por GB", "HDD: melhor para armazenamento frio"] }
+        ]
     }
 ];
 // Ordem de montagem: placa-mae PRIMEIRO, depois pecas QUE FICAM NELA, por ultimo fonte
@@ -174,6 +225,10 @@ class App {
         document.querySelector(`.part-card[data-part="${id}"]`)?.classList.add("selected");
         this.showInfo(id);
         this.updateActionBtn();
+        if (id === "ram")
+            this.showRamBalloon();
+        else
+            this.hideRamBalloon();
     }
     /* ---- SHOW INFO ---- */
     showInfo(id) {
@@ -191,10 +246,65 @@ class App {
         document.getElementById("info-conn").textContent = p.conn;
         document.getElementById("info-care").textContent = p.care;
         document.getElementById("info-curi").textContent = p.curi;
+        this.renderTabela(p.tabela);
+    }
+    renderTabela(tabela) {
+        const container = document.getElementById("info-tabela");
+        container.innerHTML = "";
+        if (!tabela || tabela.length === 0) {
+            container.innerHTML = '<p class="tabela-empty">Nenhuma comparacao disponivel.</p>';
+            return;
+        }
+        tabela.forEach((row) => {
+            const rowEl = document.createElement("div");
+            rowEl.className = "tabela-row";
+            const label = document.createElement("div");
+            label.className = "tabela-label";
+            label.textContent = row.label;
+            rowEl.appendChild(label);
+            row.opcoes.forEach((opt) => {
+                const chip = document.createElement("span");
+                chip.className = "tabela-chip";
+                chip.textContent = opt;
+                rowEl.appendChild(chip);
+            });
+            container.appendChild(rowEl);
+        });
     }
     hideInfo() {
         document.getElementById("info-filled")?.classList.add("hidden");
         document.getElementById("info-empty")?.classList.remove("hidden");
+    }
+    /* ---- RAM BALLOON (DUAL CHANNEL) ---- */
+    showRamBalloon() {
+        this.hideRamBalloon();
+        const balloon = document.createElement("div");
+        balloon.className = "balloon";
+        balloon.id = "ram-balloon";
+        balloon.innerHTML = `
+      <button class="balloon-close" id="balloon-close">&times;</button>
+      <div class="balloon-title">💾 Dual Channel na Memoria RAM</div>
+      <div class="balloon-text">
+        <b>O que e Dual Channel?</b><br>
+        Dual Channel e um recurso que dobra a largura de banda da memoria RAM.
+        Em vez de usar apenas 1 peca de memoria (canal unico), voce usa <b>2 pecas iguais</b> em slots separados.
+      </div>
+      <div class="balloon-highlight">
+        Canal Unico: 1 peca = 25.6 GB/s (DDR4-3200)<br>
+        Dual Channel: 2 pecas = 51.2 GB/s (DDR4-3200) — 2x mais rapido!
+      </div>
+      <div class="balloon-text" style="margin-top:.4rem">
+        <b>Dicas importantes:</b><br>
+        • Use 2 pecas de <b>mesma capacidade</b> (ex: 2x8GB, nao 8GB+16GB)<br>
+        • Use pecas de <b>mesma velocidade</b> (ex: 2x3200MHz)<br>
+        • Consulte o manual da placa-mae para saber quais slots usar (geralmente A2+B2)
+      </div>
+    `;
+        document.body.appendChild(balloon);
+        document.getElementById("balloon-close").onclick = () => this.hideRamBalloon();
+    }
+    hideRamBalloon() {
+        document.getElementById("ram-balloon")?.remove();
     }
     /* ---- ACTION BUTTON ---- */
     updateActionBtn() {
