@@ -1,777 +1,544 @@
 /* ============================================
-   MONTEM DE MICROCOMPUTADORES - APP.TS
-   Ferramenta Didática Interativa
+   MONTEM DE MICROCOMPUTADORES v2 — APP.TS
    ============================================ */
 
-interface ComponentData {
+interface PartData {
   id: string;
   name: string;
   category: string;
   icon: string;
   color: string;
   bgColor: string;
-  description: string;
-  function: string;
-  connection: string;
+  emoji: string;
+  desc: string;
+  func: string;
+  conn: string;
   care: string;
-  curiosity: string;
+  curi: string;
   slot: string;
   spec: string;
 }
 
-interface Connection {
-  from: string;
-  to: string;
-  label: string;
-}
-
-const COMPONENTS: ComponentData[] = [
+const PARTS: PartData[] = [
   {
-    id: 'motherboard',
-    name: 'Placa-Mãe',
-    category: 'Circuito Principal',
-    icon: '🖥️',
-    color: '#059669',
-    bgColor: '#d1fae5',
-    description:
-      'A placa-mãe é a maior placa do computador. Ela é o "chão" onde todas as outras peças são conectadas. É por meio dela que todas as partes se comunicam entre si.',
-    function:
-      'Ela interliga todos os componentes: processador, memória, placa de vídeo, armazenamento e fonte de alimentação. Ela também controla as entradas e saídas como USB, áudio e rede. Sem ela, nenhuma peça funcionaria.',
-    connection:
-      'É a primeira peça a ser instalada. Ela vai encaixada sobre os parafusos de suporte (standoffs) dentro do gabinete. Todas as outras peças serão conectadas nela.',
-    care:
-      'Sempre segure pelas bordas, nunca toque nos circuitos metálicos. Use uma pulseira antiestática para evitar descargas elétricas. Verifique se os parafusos estão firmes, mas sem exagero para não rachar a placa.',
-    curiosity:
-      'Uma placa-mãe moderna pode ter mais de 10 camadas de circuitos internos e milhões de trilhas de cobre conectando componentes!',
-    slot: 'motherboard',
-    spec: 'ATX - Chipset B660'
+    id: "motherboard", name: "Placa-Mae", category: "Circuito Principal",
+    icon: "🖥️", color: "#059669", bgColor: "#d1fae5", emoji: "🖥️",
+    desc: "A placa-mae e a maior placa do computador. Ela e o \"chao\" onde todas as outras pecas sao conectadas. E por meio dela que todas as partes se comunicam entre si.",
+    func: "Interliga todos os componentes: processador, memoria, placa de video, armazenamento e fonte. Tambem controla entradas e saidas como USB, audio e rede.",
+    conn: "Primeira peca a ser instalada. Vai encaixada sobre os parafusos de suporte (standoffs) dentro do gabinete.",
+    care: "Segure pelas bordas, nunca toque nos circuitos metalicos. Use pulseira antiestatica. Verifique os parafusos sem exagero.",
+    curi: "Uma placa-mae moderna pode ter mais de 10 camadas de circuitos e milhoes de trilhas de cobre!",
+    slot: "motherboard", spec: "ATX - Chipset B660"
   },
   {
-    id: 'cpu',
-    name: 'Processador (CPU)',
-    category: 'Cérebro do Computador',
-    icon: '🧠',
-    color: '#2563eb',
-    bgColor: '#dbeafe',
-    description:
-      'O processador, também chamado de CPU (Central Processing Unit), é o cérebro do computador. Ele executa todas as instruções e cálculos necessários para o funcionamento dos programas.',
-    function:
-      'Ele processa todas as informações: desde abrir um programa até renderizar um vídeo. Quanto mais rápido e potente o processador, mais tarefas o computador consegue executar ao mesmo tempo. Ele se comunica diretamente com a memória RAM e a placa-mãe.',
-    connection:
-      'O processador é instalado no soquete (socket) da placa-mãe. Ele se encaixa com cuidado — há um pino de alinhamento (triângulo dourado) que deve coincidir com a marca no soquete. Depois, a trava é baixada para fixá-lo.',
-    care:
-      'NUNCA force o processador. Ele deve cair suavemente no soquete. Nunca toque nos contatos dourados da parte de baixo. Antes de instalar, verifique se o pino de alinhamento está posicionado corretamente. O processador é a peça mais sensível do computador.',
-    curiosity:
-      'Um processador moderno tem bilhões de transistores — cada um menor que um vírus! Ele pode fazer bilhões de cálculos por segundo.',
-    slot: 'cpu',
-    spec: 'Intel Core i5-12400'
+    id: "cpu", name: "Processador (CPU)", category: "Cerebro do Computador",
+    icon: "🧠", color: "#2563eb", bgColor: "#dbeafe", emoji: "🧠",
+    desc: "O processador (CPU) e o cerebro do computador. Ele executa todas as instrucoes e calculos necessarios para o funcionamento dos programas.",
+    func: "Processa todas as informacoes: desde abrir um programa ate renderizar um video. Se comunica diretamente com a memoria RAM e a placa-mae.",
+    conn: "Encaixado no soquete da placa-mae. Alinhe o pino dourado (triangulo) com a marca no soquete. Depois baixe a trava.",
+    care: "NUNCA force o processador. Nunca toque nos contatos dourados. Verifique o pino de alinhamento. E a peca mais sensivel.",
+    curi: "Um processador moderno tem bilhoes de transistores, cada um menor que um virus!",
+    slot: "cpu", spec: "Intel Core i5-12400"
   },
   {
-    id: 'ram',
-    name: 'Memória RAM',
-    category: 'Memória de Trabalho',
-    icon: '💾',
-    color: '#7c3aed',
-    bgColor: '#ede9fe',
-    description:
-      'A memória RAM (Random Access Memory) é a memória de trabalho do computador. Ela guarda temporariamente os dados que o processador está usando no momento.',
-    function:
-      'Quando você abre um programa, ele é carregado da memória de armazenamento para a RAM, que o entrega rapidamente ao processador. Quanto mais RAM, mais programas você pode usar ao mesmo tempo sem o computador travar. Os dados na RAM são apagados quando o computador é desligado.',
-    connection:
-      'A memória RAM é encaixada nos slots de memória da placa-mãe (geralmente 2 ou 4 slots). Ela possui um encaixe assimétrico (com um entalhe) que impede de ser colocada ao contrário. Basta pressionar均匀mente até as travas laterais clicarem.',
-    care:
-      'Segure sempre pela borda plástica, nunca toque nos contatos dourados. Verifique a orientação do entalhe antes de encaixar. Pressione firmemente até ouvir o clique das travas. Não misture memórias de velocidades diferentes.',
-    curiosity:
-      'A RAM moderna DDR5 pode transferir dados a velocidades de até 6.400 MHz — isso é como ler 50 livros por segundo!',
-    slot: 'ram',
-    spec: 'DDR4 3200MHz - 16GB (2x8GB)'
+    id: "ram", name: "Memoria RAM", category: "Memoria de Trabalho",
+    icon: "💾", color: "#7c3aed", bgColor: "#ede9fe", emoji: "💾",
+    desc: "A memoria RAM (Random Access Memory) e a memoria de trabalho do computador. Guarda temporariamente os dados que o processador esta usando.",
+    func: "Quando voce abre um programa, ele e carregado da memoria de armazenamento para a RAM. Quanto mais RAM, mais programas voce pode usar ao mesmo tempo.",
+    conn: "Encaixada nos slots de memoria da placa-mae. Possui um entalhe assimetrico que impede de ser colocada ao contrario. Ate clicar as travas.",
+    care: "Segure pela borda plastica. Verifique a orientacao do entalhe. Pressione ate ouvir o clique. Nao misture memorias de velocidades diferentes.",
+    curi: "A RAM DDR5 pode transferir dados a 6.400 MHz — como ler 50 livros por segundo!",
+    slot: "ram", spec: "DDR4 3200MHz - 16GB (2x8GB)"
   },
   {
-    id: 'gpu',
-    name: 'Placa de Vídeo (GPU)',
-    category: 'Processador Gráfico',
-    icon: '🎮',
-    color: '#dc2626',
-    bgColor: '#fee2e2',
-    description:
-      'A placa de vídeo, ou GPU (Graphics Processing Unit), é responsável por gerar todas as imagens que aparecem na tela do monitor. Ela processa gráficos 2D e 3D.',
-    function:
-      'Enquanto o processador cuida da lógica geral, a GPU é especializada em desenhar imagens. Ela é essencial para jogos, edição de vídeo, design gráfico e qualquer trabalho que envolva imagens. Ela se comunica com a placa-mãe pelo slot PCIe e envia o sinal de vídeo para o monitor.',
-    connection:
-      'A placa de vídeo é encaixada no slot PCIe x16 (o slot mais longo e reforçado) da placa-mãe. Ela também pode precisar de conectores de energia direto da fonte (6 ou 8 pinos). Depois, você conecta o cabo de vídeo (HDMI ou DisplayPort) nela.',
-    care:
-      'É uma peça pesada, então segure-a com firmeza. Verifique se a trava do slot PCIe está aberta antes de inserir. Se precisar de energia extra, conecte o cabo da fonte antes de fixar no gabinete. Nunca force o encaixe.',
-    curiosity:
-      'As GPUs modernas podem fazer bilhões de cálculos matemáticos por segundo, sendo também usadas para inteligência artificial e ciência!',
-    slot: 'gpu',
-    spec: 'NVIDIA RTX 3060 - 12GB'
+    id: "gpu", name: "Placa de Video (GPU)", category: "Processador Grafico",
+    icon: "🎮", color: "#dc2626", bgColor: "#fee2e2", emoji: "🎮",
+    desc: "A placa de video (GPU) gera todas as imagens que aparecem na tela do monitor. Processa graficos 2D e 3D.",
+    func: "Enquanto o processador cuida da logica geral, a GPU desenha imagens. Essencial para jogos, edicao de video e design grafico.",
+    conn: "Encaixada no slot PCIe x16 (o mais longo) da placa-mae. Pode precisar de cabos de energia direto da fonte (6 ou 8 pinos).",
+    care: "Peca pesada, segure com firmeza. Verifique a trava do slot PCIe. Conecte cabos de energia antes de fixar no gabinete.",
+    curi: "As GPUs fazem bilhoes de calculos matematicos por segundo, sendo usadas para IA e ciencia!",
+    slot: "gpu", spec: "NVIDIA RTX 3060 - 12GB"
   },
   {
-    id: 'psu',
-    name: 'Fonte de Alimentação (PSU)',
-    category: 'Energia do Sistema',
-    icon: '⚡',
-    color: '#d97706',
-    bgColor: '#fef3c7',
-    description:
-      'A fonte de alimentação (Power Supply Unit - PSU) converte a energia da tomada (110V/220V) em tensões menores e seguras que todas as peças do computador precisam para funcionar (3.3V, 5V e 12V).',
-    function:
-      'Ela distribui energia para todos os componentes: placa-mãe, processador, memória, placa de vídeo, armazenamento e coolers. Uma boa fonte garante estabilidade e protege contra surtos de energia. Ela é a primeira peça que deve ser conectada e a última a ser desligada.',
-    connection:
-      'A fonte é instalada na parte traseira ou inferior do gabinete, fixada com 4 parafusos. Depois, os cabos de energia são conectados: o cabo principal de 24 pinos na placa-mãe, o cabo de 4/8 pinos para o processador, cabos SATA para armazenamento e cabos PCIe para a placa de vídeo.',
-    care:
-      'NUNCA abra a fonte — ela armazena energia perigosa mesmo desligada. Verifique se a chave seletora de tensão (110V/220V) está na posição correta. Use sempre cabos que vieram com ela. Nunca sobrecarrege a fonte com mais componentes do que ela suporta.',
-    curiosity:
-      'As fontes modernas com certificação 80 Plus Gold convertem até 90% da energia em uso, desperdiçando apenas 10% como calor!',
-    slot: 'psu',
-    spec: '650W 80 Plus Gold - Modular'
+    id: "psu", name: "Fonte de Alimentacao (PSU)", category: "Energia do Sistema",
+    icon: "⚡", color: "#d97706", bgColor: "#fef3c7", emoji: "⚡",
+    desc: "A fonte (PSU) converte a energia da tomada (110V/220V) em tensoes menores que todas as pecas precisam (3.3V, 5V e 12V).",
+    func: "Distribui energia para todos os componentes. Uma boa fonte garante estabilidade e protege contra surtos de energia.",
+    conn: "Instalada na parte traseira do gabinete com 4 parafusos. Cabos: 24 pinos na placa-mae, 4/8 pinos no processador, SATA para SSD, PCIe para GPU.",
+    care: "NUNCA abra a fonte — armazena energia perigosa. Verifique a chave seletora de tensao. Use sempre cabos originais.",
+    curi: "Fontes 80 Plus Gold convertem ate 90% da energia, desperdicando apenas 10% como calor!",
+    slot: "psu", spec: "650W 80 Plus Gold - Modular"
   },
   {
-    id: 'storage',
-    name: 'Armazenamento (SSD/HDD)',
-    category: 'Memória Permanente',
-    icon: '💿',
-    color: '#0891b2',
-    bgColor: '#cffafe',
-    description:
-      'O armazenamento é onde todos os seus arquivos ficam guardados permanentemente: o sistema operacional (Windows/Linux), programas, fotos, vídeos e documentos. O SSD é rápido, o HDD é mais lento porém mais barato.',
-    function:
-      'Diferente da RAM, os dados aqui não são apagados quando o computador é desligado. O SSD (Solid State Drive) é como uma "memória flash" gigante — muito rápido. O HDD (Hard Disk Drive) usa discos magnéticos girando. O SSD é instalado no computador para guardar o sistema operacional e todos os seus dados.',
-    connection:
-      'O SSD é conectado à placa-mãe por um cabo SATA (para SSD 2.5") ou diretamente no slot M.2 da placa-mãe (para SSD NVMe, que é ainda mais rápido). Depois, um cabo de energia da fonte é ligado nele (para SSD SATA).',
-    care:
-      'Para SSD 2.5": segure pelo corpo, encaixe o cabo de dados SATA na placa-mãe e o cabo de energia na fonte. Para SSD M.2: insira no ângulo de 30° e aperte com o parafuso. Nunca derrube um HDD ligado — os discos internos podem ser danificados.',
-    curiosity:
-      'Um SSD NVMe moderno pode ler dados a 7.000 MB/s — isso é como copiar um filme inteiro HD em menos de 1 segundo!',
-    slot: 'storage',
-    spec: 'SSD NVMe 500GB M.2'
+    id: "storage", name: "Armazenamento (SSD)", category: "Memoria Permanente",
+    icon: "💿", color: "#0891b2", bgColor: "#cffafe", emoji: "💿",
+    desc: "O armazenamento guarda todos os arquivos permanentemente: sistema operacional, programas, fotos, videos e documentos.",
+    func: "Diferente da RAM, os dados nao sao apagados quando desligado. O SSD e rapido como memoria flash. Guarda o sistema operacional e seus dados.",
+    conn: "SSD SATA: cabo de dados na placa-mae + cabo de energia na fonte. SSD M.2: inserido no angulo de 30 e apertado com parafuso.",
+    care: "Para M.2: insira no angulo e aperte com parafuso. Para SATA: encaixe cabos com cuidado. Nunca derrube um HDD ligado.",
+    curi: "Um SSD NVMe le dados a 7.000 MB/s — copia um filme HD em menos de 1 segundo!",
+    slot: "storage", spec: "SSD NVMe 500GB M.2"
   }
 ];
 
-const ASSEMBLY_ORDER: string[] = [
-  'motherboard',
-  'cpu',
-  'ram',
-  'storage',
-  'gpu',
-  'psu'
+// Ordem de montagem: placa-mae PRIMEIRO, depois pecas QUE FICAM NELA, por ultimo fonte
+const ASSEMBLY_ORDER = ["motherboard", "cpu", "ram", "gpu", "storage", "psu"];
+
+const CONNECTIONS = [
+  { from: "psu", to: "motherboard", label: "Energia 24pin" },
+  { from: "psu", to: "cpu", label: "Energia CPU" },
+  { from: "psu", to: "gpu", label: "Energia GPU" },
+  { from: "psu", to: "storage", label: "Energia SATA" },
+  { from: "cpu", to: "motherboard", label: "Soquete" },
+  { from: "ram", to: "motherboard", label: "Slot RAM" },
+  { from: "gpu", to: "motherboard", label: "Slot PCIe" },
+  { from: "storage", to: "motherboard", label: "M.2 / SATA" }
 ];
 
-const CONNECTIONS: Connection[] = [
-  { from: 'psu', to: 'motherboard', label: 'Energia 24pin' },
-  { from: 'psu', to: 'cpu', label: 'Energia CPU' },
-  { from: 'psu', to: 'gpu', label: 'Energia GPU' },
-  { from: 'psu', to: 'storage', label: 'Energia SATA' },
-  { from: 'cpu', to: 'motherboard', label: 'Soquete' },
-  { from: 'ram', to: 'motherboard', label: 'Slot RAM' },
-  { from: 'gpu', to: 'motherboard', label: 'Slot PCIe' },
-  { from: 'storage', to: 'motherboard', label: 'Cabo SATA/M.2' }
-];
-
-const DISASSEMBLY_ORDER: string[] = [...ASSEMBLY_ORDER].reverse();
-
-class ComputerAssemblyApp {
-  private mode: 'assemble' | 'disassemble' = 'assemble';
-  private installedParts: Set<string> = new Set();
-  private currentStep: number = 0;
-  private selectedPart: string | null = null;
-  private draggedPart: string | null = null;
+class App {
+  private mode: "assemble" | "disassemble" = "assemble";
+  private installed = new Set<string>();
+  private step = 0;
+  private selected: string | null = null;
 
   constructor() {
-    this.init();
-  }
-
-  private init(): void {
-    this.renderInventory();
+    this.renderParts();
     this.bindEvents();
-    this.updateStep();
+    this.updateUI();
   }
 
-  private renderInventory(): void {
-    const inventory = document.getElementById('parts-inventory')!;
-    inventory.innerHTML = '';
+  /* ---- RENDER PARTS LIST ---- */
+  private renderParts(): void {
+    const list = document.getElementById("parts-list")!;
+    list.innerHTML = "";
+    const order = this.mode === "assemble" ? ASSEMBLY_ORDER : [...ASSEMBLY_ORDER].reverse();
 
-    const order =
-      this.mode === 'assemble' ? ASSEMBLY_ORDER : DISASSEMBLY_ORDER;
+    order.forEach((id) => {
+      const p = PARTS.find((x) => x.id === id)!;
+      const card = document.createElement("div");
+      card.className = "part-card";
+      card.dataset.part = id;
 
-    order.forEach((partId) => {
-      const data = COMPONENTS.find((c) => c.id === partId)!;
-      const card = document.createElement('div');
-      card.className = 'part-card';
-      card.dataset.part = partId;
-      card.draggable = true;
+      if (this.installed.has(id)) card.classList.add("installed");
 
-      if (this.installedParts.has(partId)) {
-        card.classList.add('installed');
+      // Highlight next piece in assembly mode
+      if (this.mode === "assemble" && !this.installed.has(id)) {
+        const expected = ASSEMBLY_ORDER[this.step];
+        if (id === expected) card.classList.add("next");
+      }
+      if (this.mode === "disassemble" && this.installed.has(id)) {
+        const expected = [...ASSEMBLY_ORDER].reverse()[this.step];
+        if (id === expected) card.classList.add("next");
       }
 
       card.innerHTML = `
-        <div class="part-icon" style="background:${data.bgColor}">${data.icon}</div>
-        <div class="part-info">
-          <div class="part-name">${data.name}</div>
-          <div class="part-category">${data.category}</div>
-        </div>
-      `;
+        <div class="pc-icon" style="background:${p.bgColor}">${p.icon}</div>
+        <div class="pc-text">
+          <div class="pc-name">${p.name}</div>
+          <div class="pc-cat">${p.category}</div>
+        </div>`;
 
-      card.addEventListener('click', () => this.selectPart(partId));
-      card.addEventListener('dragstart', (e) => this.onDragStart(e, partId));
-      card.addEventListener('dragend', () => this.onDragEnd());
+      card.addEventListener("click", () => this.selectPart(id));
+      card.addEventListener("dragstart", (e) => {
+        e.dataTransfer!.setData("text/plain", id);
+        e.dataTransfer!.effectAllowed = "move";
+        card.style.opacity = "0.5";
+      });
+      card.addEventListener("dragend", () => { card.style.opacity = ""; });
 
-      inventory.appendChild(card);
+      list.appendChild(card);
     });
   }
 
+  /* ---- EVENTS ---- */
   private bindEvents(): void {
-    document.getElementById('btn-assemble')!.addEventListener('click', () => {
-      this.setMode('assemble');
-    });
-    document.getElementById('btn-disassemble')!.addEventListener('click', () => {
-      this.setMode('disassemble');
-    });
-    document.getElementById('btn-reset')!.addEventListener('click', () => {
-      this.reset();
-    });
-    document.getElementById('btn-install')!.addEventListener('click', () => {
-      this.installSelectedPart();
-    });
-    document.getElementById('modal-btn')!.addEventListener('click', () => {
-      this.closeModal();
-    });
-    document.getElementById('btn-reset-celebration')!.addEventListener('click', () => {
-      this.reset();
-      this.closeCelebration();
-    });
+    document.getElementById("btn-assemble")!.onclick = () => this.setMode("assemble");
+    document.getElementById("btn-disassemble")!.onclick = () => this.setMode("disassemble");
+    document.getElementById("btn-reset")!.onclick = () => this.reset();
+    document.getElementById("btn-action")!.onclick = () => this.actionPart();
+    document.getElementById("btn-modal")!.onclick = () => this.hideModal();
+    document.getElementById("btn-celebration-close")!.onclick = () => { this.reset(); this.hideCelebration(); };
 
-    const workbench = document.getElementById('workbench')!;
-    workbench.addEventListener('dragover', (e) => this.onDragOver(e));
-    document.querySelectorAll<HTMLElement>('[class^="slot-"]').forEach((slot) => {
-      const slotId = slot.dataset.slot;
-      if (slotId) {
-        slot.addEventListener('dragover', (e) => this.onSlotDragOver(e, slotId));
-        slot.addEventListener('dragleave', () => this.onSlotDragLeave(slotId));
-        slot.addEventListener('drop', (e) => this.onDrop(e, slotId));
-      }
+    // Drag-drop on each slot
+    document.querySelectorAll<HTMLElement>(".slot-zone").forEach((el) => {
+      const slotId = el.dataset.slot!;
+      el.addEventListener("dragover", (e) => { e.preventDefault(); el.classList.add("dragover"); });
+      el.addEventListener("dragleave", () => el.classList.remove("dragover"));
+      el.addEventListener("drop", (e) => {
+        e.preventDefault();
+        el.classList.remove("dragover");
+        const partId = e.dataTransfer!.getData("text/plain");
+        if (partId) {
+          this.selectPart(partId);
+          if (partId === slotId) this.actionPart();
+          else this.showWrongSlot(partId, slotId);
+        }
+      });
     });
   }
 
-  private setMode(mode: 'assemble' | 'disassemble'): void {
-    this.mode = mode;
-    document.getElementById('btn-assemble')!.classList.toggle('active', mode === 'assemble');
-    document.getElementById('btn-disassemble')!.classList.toggle('active', mode === 'disassemble');
+  private setMode(m: "assemble" | "disassemble"): void {
+    this.mode = m;
+    document.getElementById("btn-assemble")!.classList.toggle("active", m === "assemble");
+    document.getElementById("btn-disassemble")!.classList.toggle("active", m === "disassemble");
     this.reset();
   }
 
   private reset(): void {
-    this.installedParts.clear();
-    this.currentStep = 0;
-    this.selectedPart = null;
-    this.renderInventory();
+    this.installed.clear();
+    this.step = 0;
+    this.selected = null;
+    this.renderParts();
     this.clearWorkbench();
-    this.clearInfoPanel();
-    this.updateStep();
-    this.updateInstallButton();
+    this.hideInfo();
+    this.updateUI();
   }
 
-  private selectPart(partId: string): void {
-    this.selectedPart = partId;
-
-    document.querySelectorAll('.part-card').forEach((c) => c.classList.remove('selected'));
-    const card = document.querySelector(`.part-card[data-part="${partId}"]`);
-    if (card) card.classList.add('selected');
-
-    this.showInfo(partId);
-    this.updateInstallButton();
+  /* ---- SELECT PART ---- */
+  private selectPart(id: string): void {
+    this.selected = id;
+    document.querySelectorAll(".part-card").forEach((c) => c.classList.remove("selected"));
+    document.querySelector(`.part-card[data-part="${id}"]`)?.classList.add("selected");
+    this.showInfo(id);
+    this.updateActionBtn();
   }
 
-  private showInfo(partId: string): void {
-    const data = COMPONENTS.find((c) => c.id === partId)!;
+  /* ---- SHOW INFO ---- */
+  private showInfo(id: string): void {
+    const p = PARTS.find((x) => x.id === id)!;
+    document.getElementById("info-empty")?.classList.add("hidden");
+    const filled = document.getElementById("info-filled")!;
+    filled.classList.remove("hidden");
 
-    document.getElementById('info-placeholder')?.classList.add('hidden');
-    const content = document.getElementById('info-content')!;
-    content.classList.remove('hidden');
+    const badge = document.getElementById("info-badge")!;
+    badge.textContent = p.icon;
+    badge.style.background = p.bgColor;
 
-    document.getElementById('info-icon')!.textContent = data.icon;
-    (document.getElementById('info-icon') as HTMLElement).style.background = data.bgColor;
-    document.getElementById('info-title')!.textContent = data.name;
-    document.getElementById('info-description')!.textContent = data.description;
-    document.getElementById('info-function')!.textContent = data.function;
-    document.getElementById('info-connection')!.textContent = data.connection;
-    document.getElementById('info-care')!.textContent = data.care;
-    document.getElementById('info-curiosity')!.textContent = data.curiosity;
+    document.getElementById("info-title")!.textContent = p.name;
+    document.getElementById("info-category")!.textContent = p.category;
+    document.getElementById("info-desc")!.textContent = p.desc;
+    document.getElementById("info-func")!.textContent = p.func;
+    document.getElementById("info-conn")!.textContent = p.conn;
+    document.getElementById("info-care")!.textContent = p.care;
+    document.getElementById("info-curi")!.textContent = p.curi;
   }
 
-  private clearInfoPanel(): void {
-    document.getElementById('info-content')?.classList.add('hidden');
-    const placeholder = document.getElementById('info-placeholder');
-    if (placeholder) placeholder.classList.remove('hidden');
+  private hideInfo(): void {
+    document.getElementById("info-filled")?.classList.add("hidden");
+    document.getElementById("info-empty")?.classList.remove("hidden");
   }
 
-  private updateInstallButton(): void {
-    const btn = document.getElementById('btn-install') as HTMLButtonElement;
-    if (!this.selectedPart) {
-      btn.disabled = true;
-      btn.textContent = '🔧 Instalar esta peça';
-      btn.className = 'btn-install';
-      return;
-    }
+  /* ---- ACTION BUTTON ---- */
+  private updateActionBtn(): void {
+    const btn = document.getElementById("btn-action") as HTMLButtonElement;
+    if (!this.selected) { btn.disabled = true; btn.textContent = "🔧 Instalar esta peca"; btn.className = "btn-action"; return; }
 
-    const isInstalled = this.installedParts.has(this.selectedPart);
-
-    if (this.mode === 'assemble') {
-      if (isInstalled) {
-        btn.disabled = true;
-        btn.textContent = '✓ Peça já instalada';
-        btn.className = 'btn-install';
+    if (this.mode === "assemble") {
+      if (this.installed.has(this.selected)) {
+        btn.disabled = true; btn.textContent = "✓ Ja instalada"; btn.className = "btn-action";
       } else {
-        const expectedPart = ASSEMBLY_ORDER[this.currentStep];
-        if (this.selectedPart === expectedPart) {
-          btn.disabled = false;
-          btn.textContent = '🔧 Instalar esta peça';
-          btn.className = 'btn-install next-correct';
+        const expected = ASSEMBLY_ORDER[this.step];
+        if (this.selected === expected) {
+          btn.disabled = false; btn.textContent = "🔧 Instalar esta peca"; btn.className = "btn-action ready";
         } else {
-          btn.disabled = false;
-          btn.textContent = '⚠️ Esta peça ainda não é a próxima!';
-          btn.className = 'btn-install wrong';
+          btn.disabled = false; btn.textContent = "⚠️ Ainda nao e a vez!"; btn.className = "btn-action wrong-order";
         }
       }
     } else {
-      if (!isInstalled) {
-        btn.disabled = true;
-        btn.textContent = 'Peça não está instalada';
-        btn.className = 'btn-install';
+      if (!this.installed.has(this.selected)) {
+        btn.disabled = true; btn.textContent = "Nao instalada"; btn.className = "btn-action";
       } else {
-        const expectedPart = DISASSEMBLY_ORDER[this.currentStep];
-        if (this.selectedPart === expectedPart) {
-          btn.disabled = false;
-          btn.textContent = '🔩 Remover esta peça';
-          btn.className = 'btn-install next-correct';
+        const expected = [...ASSEMBLY_ORDER].reverse()[this.step];
+        if (this.selected === expected) {
+          btn.disabled = false; btn.textContent = "🔩 Remover esta peca"; btn.className = "btn-action ready";
         } else {
-          btn.disabled = false;
-          btn.textContent = '⚠️ Remova as outras peças primeiro!';
-          btn.className = 'btn-install wrong';
+          btn.disabled = false; btn.textContent = "⚠️ Remova as outras primeiro!"; btn.className = "btn-action wrong-order";
         }
       }
     }
   }
 
-  private installSelectedPart(): void {
-    if (!this.selectedPart) return;
-
-    if (this.mode === 'assemble') {
-      this.assemblePart(this.selectedPart);
-    } else {
-      this.disassemblePart(this.selectedPart);
-    }
+  /* ---- ACTION ---- */
+  private actionPart(): void {
+    if (!this.selected) return;
+    if (this.mode === "assemble") this.assemble(this.selected);
+    else this.disassemble(this.selected);
   }
 
-  private assemblePart(partId: string): void {
-    const expectedPart = ASSEMBLY_ORDER[this.currentStep];
-
-    if (partId !== expectedPart) {
-      const data = COMPONENTS.find((c) => c.id === partId)!;
-      const expected = COMPONENTS.find((c) => c.id === expectedPart)!;
-      this.showModal(
-        '⚠️',
-        'Ordem incorreta!',
-        `A próxima peça a ser instalada é a ${expected.name}. Na montagem, a ordem é importante para facilitar o processo e evitar danos.`,
-        `Dica: ${this.getOrderHint(this.currentStep)}`
-      );
+  private assemble(id: string): void {
+    const expected = ASSEMBLY_ORDER[this.step];
+    if (id !== expected) {
+      const p = PARTS.find((x) => x.id === id)!;
+      const exp = PARTS.find((x) => x.id === expected)!;
+      this.showModal("⚠️", "Ordem incorreta!", `A proxima peca e: ${exp.name}. ${this.getOrderHint()}`, "");
       return;
     }
 
-    this.installedParts.add(partId);
-    const data = COMPONENTS.find((c) => c.id === partId)!;
+    this.installed.add(id);
+    const p = PARTS.find((x) => x.id === id)!;
 
-    this.placeComponent(partId);
-    this.showConnections(partId);
+    // Show motherboard bg after installing it
+    if (id === "motherboard") {
+      document.getElementById("motherboard-bg")!.classList.add("visible", "placed");
+      // Make inner slots interactive
+      document.querySelectorAll<HTMLElement>(".slot-zone").forEach((s) => s.style.pointerEvents = "auto");
+    }
 
-    this.showModal(
-      '✅',
-      `${data.name} instalada com sucesso!`,
-      this.getInstallMessage(partId),
-      `Progresso: ${this.installedParts.size} de ${COMPONENTS.length} peças instaladas`
-    );
+    this.placeOnWorkbench(id);
+    this.showConnectionLines(id);
+    this.highlightSlot(id, true);
 
-    this.currentStep++;
-    this.renderInventory();
-    this.updateStep();
-    this.updateInstallButton();
-    this.highlightSlot(partId, true);
+    this.showModal("✅", `${p.name} instalada!`, this.getInstallMsg(id), `Progresso: ${this.installed.size} de ${PARTS.length}`);
 
-    if (this.installedParts.size === COMPONENTS.length) {
-      setTimeout(() => this.showCelebration(), 1200);
+    this.step++;
+    this.renderParts();
+    this.updateUI();
+    this.updateActionBtn();
+
+    if (this.installed.size === PARTS.length) {
+      setTimeout(() => this.showCelebration(), 1000);
     }
   }
 
-  private disassemblePart(partId: string): void {
-    const expectedPart = DISASSEMBLY_ORDER[this.currentStep];
-
-    if (partId !== expectedPart) {
-      const data = COMPONENTS.find((c) => c.id === partId)!;
-      const expected = COMPONENTS.find((c) => c.id === expectedPart)!;
-      this.showModal(
-        '⚠️',
-        'Ordem incorreta!',
-        `Para desmontar com segurança, primeiro remova a ${expected.name}. A ordem inversa da montagem é a mais segura.`,
-        `Dica: Comece pelas peças que estão por cima e que mais facilmente podem ser removidas.`
-      );
+  private disassemble(id: string): void {
+    const expected = [...ASSEMBLY_ORDER].reverse()[this.step];
+    if (id !== expected) {
+      const exp = PARTS.find((x) => x.id === expected)!;
+      this.showModal("⚠️", "Ordem incorreta!", `Primeiro remova: ${exp.name}. A ordem inversa da montagem e a mais segura.`, "");
       return;
     }
 
-    this.installedParts.delete(partId);
-    const data = COMPONENTS.find((c) => c.id === partId)!;
+    this.installed.delete(id);
 
-    this.removeComponent(partId);
-    this.removeConnection(partId);
+    if (id === "motherboard") {
+      document.getElementById("motherboard-bg")!.classList.remove("visible", "placed");
+      // Disable inner slots
+      document.querySelectorAll<HTMLElement>(".slot-zone").forEach((s) => s.style.pointerEvents = "none");
+    }
 
-    this.showModal(
-      '🔩',
-      `${data.name} removida!`,
-      this.getDisassembleMessage(partId),
-      `Progresso: ${COMPONENTS.length - this.installedParts.size} de ${COMPONENTS.length} peças removidas`
-    );
+    this.removeFromWorkbench(id);
+    this.removeConnectionLines(id);
+    this.highlightSlot(id, false);
 
-    this.currentStep++;
-    this.renderInventory();
-    this.updateStep();
-    this.updateInstallButton();
-    this.highlightSlot(partId, false);
+    const p = PARTS.find((x) => x.id === id)!;
+    this.showModal("🔩", `${p.name} removida!`, this.getDisassembleMsg(id), `Restam: ${PARTS.length - this.installed.size} pecas`);
 
-    if (this.installedParts.size === 0) {
-      setTimeout(() => {
-        this.showModal(
-          '🎉',
-          'Desmontagem completa!',
-          'Todas as peças foram removidas com sucesso. Agora você pode montar novamente clicando em "Montar"!',
-          ''
-        );
-      }, 1200);
+    this.step++;
+    this.renderParts();
+    this.updateUI();
+    this.updateActionBtn();
+
+    if (this.installed.size === 0) {
+      setTimeout(() => this.showModal("🎉", "Desmontagem completa!", "Todas as pecas foram removidas. Clique em Montar para recomecar.", ""), 800);
     }
   }
 
-  private placeComponent(partId: string): void {
-    const workbench = document.getElementById('workbench')!;
-    const slot = document.getElementById(`slot-${partId}`)!;
-    const data = COMPONENTS.find((c) => c.id === partId)!;
+  /* ---- WORKBENCH PLACEMENT ---- */
+  private placeOnWorkbench(id: string): void {
+    const wb = document.getElementById("workbench")!;
+    const slot = document.getElementById(`slot-${id}`)!;
+    const p = PARTS.find((x) => x.id === id)!;
 
-    slot.classList.add('installed');
+    slot.classList.add("installed");
 
-    const placed = document.createElement('div');
-    placed.className = 'placed-component';
-    placed.id = `placed-${partId}`;
-    placed.style.background = data.color;
+    const placed = document.createElement("div");
+    placed.className = "placed";
+    placed.id = `placed-${id}`;
+    placed.style.background = p.color;
 
-    const slotRect = slot.getBoundingClientRect();
-    const workbenchRect = workbench.getBoundingClientRect();
-    const left = slotRect.left - workbenchRect.left + slotRect.width * 0.1;
-    const top = slotRect.top - workbenchRect.top + slotRect.height * 0.1;
-    const width = slotRect.width * 0.8;
-    const height = slotRect.height * 0.8;
+    const sr = slot.getBoundingClientRect();
+    const wr = wb.getBoundingClientRect();
 
-    placed.style.left = `${left}px`;
-    placed.style.top = `${top}px`;
-    placed.style.width = `${width}px`;
-    placed.style.height = `${height}px`;
-    placed.innerHTML = `${data.icon}<span class="placed-label">${data.name}</span>`;
-    placed.addEventListener('click', () => this.selectPart(partId));
+    placed.style.left = (sr.left - wr.left + 4) + "px";
+    placed.style.top = (sr.top - wr.top + 4) + "px";
+    placed.style.width = (sr.width - 8) + "px";
+    placed.style.height = (sr.height - 8) + "px";
 
-    workbench.appendChild(placed);
+    placed.innerHTML = `<span class="placed-emoji">${p.emoji}</span><span class="placed-name">${p.name}</span>`;
+    placed.addEventListener("click", () => this.selectPart(id));
+
+    wb.appendChild(placed);
   }
 
-  private removeComponent(partId: string): void {
-    const placed = document.getElementById(`placed-${partId}`);
-    if (placed) {
-      placed.style.transition = 'all 0.3s ease';
-      placed.style.opacity = '0';
-      placed.style.transform = 'scale(0.5)';
-      setTimeout(() => placed.remove(), 300);
-    }
-    const slot = document.getElementById(`slot-${partId}`);
-    if (slot) slot.classList.remove('installed');
-  }
-
-  private showConnections(partId: string): void {
-    const svg = document.getElementById('connections-svg')!;
-    const workbench = document.getElementById('workbench')!;
-    const wbRect = workbench.getBoundingClientRect();
-
-    const relevantConnections = CONNECTIONS.filter(
-      (c) =>
-        (c.from === partId && this.installedParts.has(c.to)) ||
-        (c.to === partId && this.installedParts.has(c.from))
-    );
-
-    relevantConnections.forEach((conn) => {
-      const existing = document.getElementById(`conn-${conn.from}-${conn.to}`);
-      if (existing) return;
-
-      const fromSlot = document.getElementById(`slot-${conn.from}`);
-      const toSlot = document.getElementById(`slot-${conn.to}`);
-      if (!fromSlot || !toSlot) return;
-
-      const fromRect = fromSlot.getBoundingClientRect();
-      const toRect = toSlot.getBoundingClientRect();
-
-      const x1 = fromRect.left - wbRect.left + fromRect.width / 2;
-      const y1 = fromRect.top - wbRect.top + fromRect.height / 2;
-      const x2 = toRect.left - wbRect.left + toRect.width / 2;
-      const y2 = toRect.top - wbRect.top + toRect.height / 2;
-
-      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      line.setAttribute('x1', `${x1}`);
-      line.setAttribute('y1', `${y1}`);
-      line.setAttribute('x2', `${x2}`);
-      line.setAttribute('y2', `${y2}`);
-      line.setAttribute('class', 'connection-line');
-      line.id = `conn-${conn.from}-${conn.to}`;
-      svg.appendChild(line);
-
-      const midX = (x1 + x2) / 2;
-      const midY = (y1 + y2) / 2;
-      const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      text.setAttribute('x', `${midX}`);
-      text.setAttribute('y', `${midY - 6}`);
-      text.setAttribute('class', 'connection-label');
-      text.setAttribute('text-anchor', 'middle');
-      text.textContent = conn.label;
-      text.id = `conn-label-${conn.from}-${conn.to}`;
-      svg.appendChild(text);
-    });
-  }
-
-  private removeConnection(partId: string): void {
-    const svg = document.getElementById('connections-svg')!;
-    CONNECTIONS.forEach((conn) => {
-      if (conn.from === partId || conn.to === partId) {
-        document.getElementById(`conn-${conn.from}-${conn.to}`)?.remove();
-        document.getElementById(`conn-label-${conn.from}-${conn.to}`)?.remove();
-      }
-    });
-  }
-
-  private highlightSlot(partId: string, installed: boolean): void {
-    const slot = document.getElementById(`slot-${partId}`);
-    if (slot) {
-      if (installed) {
-        slot.classList.add('flash-success');
-        setTimeout(() => slot.classList.remove('flash-success'), 600);
-      }
-    }
+  private removeFromWorkbench(id: string): void {
+    const el = document.getElementById(`placed-${id}`);
+    if (el) { el.style.transition = ".3s"; el.style.opacity = "0"; el.style.transform = "scale(.4)"; setTimeout(() => el.remove(), 300); }
+    const slot = document.getElementById(`slot-${id}`);
+    if (slot) slot.classList.remove("installed");
   }
 
   private clearWorkbench(): void {
-    document.querySelectorAll('.placed-component').forEach((el) => el.remove());
-    document.querySelectorAll('[class^="slot-"]').forEach((el) => {
-      el.classList.remove('installed', 'active', 'flash-success');
-    });
-    const svg = document.getElementById('connections-svg')!;
-    svg.innerHTML = '';
+    document.querySelectorAll(".placed").forEach((el) => el.remove());
+    document.querySelectorAll(".slot-zone").forEach((s) => s.classList.remove("installed", "dragover"));
+    document.getElementById("motherboard-bg")!.classList.remove("visible", "placed");
+    document.getElementById("connections-svg")!.innerHTML = "";
   }
 
-  private updateStep(): void {
-    const stepText = document.getElementById('step-text')!;
-    const total = COMPONENTS.length;
+  /* ---- CONNECTION LINES ---- */
+  private showConnectionLines(id: string): void {
+    const svg = document.getElementById("connections-svg")!;
+    const wb = document.getElementById("workbench")!;
+    const wr = wb.getBoundingClientRect();
 
-    if (this.mode === 'assemble') {
-      if (this.currentStep >= total) {
-        stepText.textContent = '🎉 Montagem completa! Parabéns!';
+    CONNECTIONS.forEach((c) => {
+      if ((c.from === id && this.installed.has(c.to)) || (c.to === id && this.installed.has(c.from))) {
+        if (document.getElementById(`conn-${c.from}-${c.to}`)) return;
+
+        const sFrom = document.getElementById(`slot-${c.from}`);
+        const sTo = document.getElementById(`slot-${c.to}`);
+        if (!sFrom || !sTo) return;
+
+        const r1 = sFrom.getBoundingClientRect();
+        const r2 = sTo.getBoundingClientRect();
+        const x1 = r1.left - wr.left + r1.width / 2;
+        const y1 = r1.top - wr.top + r1.height / 2;
+        const x2 = r2.left - wr.left + r2.width / 2;
+        const y2 = r2.top - wr.top + r2.height / 2;
+
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("x1", String(x1)); line.setAttribute("y1", String(y1));
+        line.setAttribute("x2", String(x2)); line.setAttribute("y2", String(y2));
+        line.setAttribute("class", "conn-line");
+        line.id = `conn-${c.from}-${c.to}`;
+        svg.appendChild(line);
+
+        const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        text.setAttribute("x", String((x1 + x2) / 2));
+        text.setAttribute("y", String((y1 + y2) / 2 - 6));
+        text.setAttribute("class", "conn-label");
+        text.setAttribute("text-anchor", "middle");
+        text.textContent = c.label;
+        text.id = `conn-label-${c.from}-${c.to}`;
+        svg.appendChild(text);
+      }
+    });
+  }
+
+  private removeConnectionLines(id: string): void {
+    CONNECTIONS.forEach((c) => {
+      if (c.from === id || c.to === id) {
+        document.getElementById(`conn-${c.from}-${c.to}`)?.remove();
+        document.getElementById(`conn-label-${c.from}-${c.to}`)?.remove();
+      }
+    });
+  }
+
+  private highlightSlot(id: string, on: boolean): void {
+    const slot = document.getElementById(`slot-${id}`);
+    if (slot && on) { slot.classList.add("flash"); setTimeout(() => slot.classList.remove("flash"), 500); }
+  }
+
+  /* ---- UI UPDATES ---- */
+  private updateUI(): void {
+    const total = PARTS.length;
+    const fill = document.getElementById("progress-fill")!;
+    const txt = document.getElementById("progress-text")!;
+    const info = document.getElementById("step-info")!;
+
+    fill.style.width = (this.installed.size / total * 100) + "%";
+    txt.textContent = `${this.installed.size} / ${total}`;
+
+    if (this.mode === "assemble") {
+      if (this.installed.size === total) {
+        info.textContent = "🎉 Montagem completa! Parabens!";
       } else {
-        const expectedPart = ASSEMBLY_ORDER[this.currentStep];
-        const data = COMPONENTS.find((c) => c.id === expectedPart)!;
-        stepText.textContent = `Passo ${this.currentStep + 1} de ${total} — Instale: ${data.name}`;
+        const next = ASSEMBLY_ORDER[this.step];
+        const p = PARTS.find((x) => x.id === next)!;
+        info.textContent = `Passo ${this.step + 1}/${total} — Instale: ${p.name}`;
       }
     } else {
-      if (this.currentStep >= total) {
-        stepText.textContent = '🔩 Desmontagem completa!';
+      if (this.installed.size === 0) {
+        info.textContent = "🔩 Desmontagem completa!";
       } else {
-        const expectedPart = DISASSEMBLY_ORDER[this.currentStep];
-        const data = COMPONENTS.find((c) => c.id === expectedPart)!;
-        stepText.textContent = `Passo ${this.currentStep + 1} de ${total} — Remova: ${data.name}`;
+        const next = [...ASSEMBLY_ORDER].reverse()[this.step];
+        const p = PARTS.find((x) => x.id === next)!;
+        info.textContent = `Passo ${this.step + 1}/${total} — Remova: ${p.name}`;
       }
     }
   }
 
-  private getOrderHint(step: number): string {
-    const hints: string[] = [
-      'A placa-mãe é a base. Comece sempre por ela!',
-      'Depois da placa-mãe, instale o processador no soquete.',
-      'Com o processador no lugar, é hora da memória RAM.',
-      'Agora instale o armazenamento para o sistema operacional.',
-      'Com as peças base prontas, instale a placa de vídeo.',
-      'Por último, instale a fonte e faça todas as conexões de energia.'
-    ];
-    return hints[step] || '';
-  }
-
-  private getInstallMessage(partId: string): string {
-    const messages: Record<string, string> = {
-      motherboard:
-        'A placa-mãe foi fixada no gabinete. Agora ela é a base para todas as outras peças!',
-      cpu:
-        'O processador foi instalado no soquete. Ele é o cérebro do computador e agora está pronto para trabalhar!',
-      ram:
-        'A memória RAM foi encaixada. Agora o computador tem memória de trabalho para rodar programas!',
-      storage:
-        'O armazenamento está conectado. Aqui ficarão guardados o sistema operacional e todos os seus arquivos!',
-      gpu:
-        'A placa de vídeo está no slot PCIe. Agora o computador pode gerar imagens e gráficos na tela!',
-      psu:
-        'A fonte foi instalada e todos os cabos conectados. O computador agora tem energia para funcionar!'
+  /* ---- HELPERS ---- */
+  private getOrderHint(): string {
+    const hints: Record<number, string> = {
+      0: "Comece pela placa-mae — ela e a base de tudo!",
+      1: "Com a placa-mae pronta, instale o processador no soquete.",
+      2: "Agora a memoria RAM nos slots de memoria.",
+      3: "Depois a placa de video no slot PCIe.",
+      4: "O armazenamento SSD no slot M.2.",
+      5: "Por ultimo a fonte de alimentacao — ela da energia a todas as pecas!"
     };
-    return messages[partId] || '';
+    return hints[this.step] || "";
   }
 
-  private getDisassembleMessage(partId: string): string {
-    const messages: Record<string, string> = {
-      psu:
-        'A fonte foi desconectada. Lembre-se: sempre desconecte a fonte ANTES de remover qualquer outra peça!',
-      gpu:
-        'A placa de vídeo foi removida. Cuidado: primeiramente desconecte o cabo de energia antes de puxar a placa.',
-      storage:
-        'O armazenamento foi removido. Seus dados estão guardados nele — manuseie com cuidado!',
-      ram:
-        'A memória RAM foi removida. Ela liberou os slots de memória da placa-mãe.',
-      cpu:
-        'O processador foi removido do soquete. Ele é muito delicado — guarde na embalagem original.',
-      motherboard:
-        'A placa-mãe foi removida do gabinete. Todos os componentes que estavam nela foram desmontados!'
+  private getInstallMsg(id: string): string {
+    const m: Record<string, string> = {
+      motherboard: "A placa-mae foi fixada. Agora ela e a base para todas as outras pecas!",
+      cpu: "O processador foi instalado no soquete. Ele e o cerebro do computador!",
+      ram: "A memoria RAM foi encaixada. Agora o computador tem memoria de trabalho!",
+      gpu: "A placa de video esta no slot PCIe. Agora o computador gera imagens!",
+      storage: "O SSD foi conectado. Aqui ficarao guardados o sistema e seus arquivos!",
+      psu: "A fonte foi instalada e os cabos conectados. O computador tem energia!"
     };
-    return messages[partId] || '';
+    return m[id] || "";
   }
 
-  private showModal(
-    icon: string,
-    title: string,
-    message: string,
-    details: string
-  ): void {
-    const overlay = document.getElementById('modal-overlay')!;
-    overlay.classList.remove('hidden');
-    document.getElementById('modal-icon')!.textContent = icon;
-    document.getElementById('modal-title')!.textContent = title;
-    document.getElementById('modal-message')!.textContent = message;
-    document.getElementById('modal-details')!.textContent = details;
+  private getDisassembleMsg(id: string): string {
+    const m: Record<string, string> = {
+      psu: "A fonte foi desconectada. Sempre e a primeira a ser removida!",
+      storage: "O SSD foi removido. Manuseie com cuidado!",
+      gpu: "A placa de video foi removida. Desconecte os cabos antes!",
+      ram: "A memoria RAM foi removida. Slots liberados!",
+      cpu: "O processador foi removido. Guarde na embalagem original!",
+      motherboard: "A placa-mae foi removida. Todas as pecas foram desmontadas!"
+    };
+    return m[id] || "";
   }
 
-  private closeModal(): void {
-    document.getElementById('modal-overlay')!.classList.add('hidden');
+  private showWrongSlot(partId: string, slotId: string): void {
+    const p = PARTS.find((x) => x.id === partId)!;
+    const s = PARTS.find((x) => x.slot === slotId);
+    this.showModal("❌", "Local errado!", `A peca "${p.name}" nao vai aqui. O local correto seria: ${s ? s.name : slotId}.`, "Selecione a peca e clique em Instalar.");
   }
 
+  /* ---- MODAL ---- */
+  private showModal(emoji: string, title: string, msg: string, detail: string): void {
+    document.getElementById("modal-emoji")!.textContent = emoji;
+    document.getElementById("modal-title")!.textContent = title;
+    document.getElementById("modal-msg")!.textContent = msg;
+    document.getElementById("modal-detail")!.textContent = detail;
+    document.getElementById("modal-bg")!.classList.remove("hidden");
+  }
+  private hideModal(): void { document.getElementById("modal-bg")!.classList.add("hidden"); }
+
+  /* ---- CELEBRATION ---- */
   private showCelebration(): void {
-    const celebration = document.getElementById('celebration')!;
-    celebration.classList.remove('hidden');
+    document.getElementById("celebration-bg")!.classList.remove("hidden");
 
-    this.createConfetti();
+    const conf = document.getElementById("confetti")!;
+    conf.innerHTML = "";
+    const colors = ["#2563eb","#10b981","#f59e0b","#ef4444","#8b5cf6","#ec4899"];
+    for (let i = 0; i < 60; i++) {
+      const d = document.createElement("div");
+      d.className = "confetti-piece";
+      d.style.left = Math.random() * 100 + "%";
+      d.style.top = Math.random() * 20 + "%";
+      d.style.background = colors[Math.floor(Math.random() * colors.length)];
+      d.style.animationDelay = Math.random() * 2 + "s";
+      d.style.animationDuration = (2 + Math.random() * 2) + "s";
+      d.style.width = (6 + Math.random() * 8) + "px";
+      d.style.height = (6 + Math.random() * 8) + "px";
+      d.style.borderRadius = Math.random() > .5 ? "50%" : "2px";
+      conf.appendChild(d);
+    }
 
-    const specs = document.getElementById('final-specs')!;
-    specs.innerHTML = '<h4 style="margin-bottom:0.5rem;font-size:0.9rem;color:#374151;">Especificações do Computador Montado:</h4>';
-    COMPONENTS.forEach((comp) => {
-      specs.innerHTML += `
-        <div class="spec-item">
-          <div class="spec-icon" style="background:${comp.bgColor}">${comp.icon}</div>
-          <span><strong>${comp.name}</strong> — ${comp.spec}</span>
-        </div>
-      `;
+    const specs = document.getElementById("final-specs")!;
+    specs.innerHTML = '<div style="font-size:.85rem;font-weight:700;color:#374151;margin-bottom:.4rem">Especificacoes do Computador:</div>';
+    PARTS.forEach((p) => {
+      specs.innerHTML += `<div class="spec-row"><div class="spec-dot" style="background:${p.bgColor}">${p.icon}</div><span><b>${p.name}</b> — ${p.spec}</span></div>`;
     });
   }
-
-  private closeCelebration(): void {
-    document.getElementById('celebration')!.classList.add('hidden');
-  }
-
-  private createConfetti(): void {
-    const container = document.getElementById('confetti')!;
-    container.innerHTML = '';
-    const colors = [
-      '#2563eb',
-      '#10b981',
-      '#f59e0b',
-      '#ef4444',
-      '#8b5cf6',
-      '#ec4899'
-    ];
-
-    for (let i = 0; i < 50; i++) {
-      const piece = document.createElement('div');
-      piece.className = 'confetti-piece';
-      piece.style.left = `${Math.random() * 100}%`;
-      piece.style.top = `${Math.random() * 20}%`;
-      piece.style.background = colors[Math.floor(Math.random() * colors.length)];
-      piece.style.animationDelay = `${Math.random() * 2}s`;
-      piece.style.animationDuration = `${2 + Math.random() * 2}s`;
-      piece.style.width = `${6 + Math.random() * 8}px`;
-      piece.style.height = `${6 + Math.random() * 8}px`;
-      piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
-      container.appendChild(piece);
-    }
-  }
-
-  private onDragStart(e: DragEvent, partId: string): void {
-    this.draggedPart = partId;
-    (e.target as HTMLElement).classList.add('dragging');
-    if (e.dataTransfer) {
-      e.dataTransfer.effectAllowed = 'move';
-      e.dataTransfer.setData('text/plain', partId);
-    }
-  }
-
-  private onDragEnd(): void {
-    this.draggedPart = null;
-    document.querySelectorAll('.part-card.dragging').forEach((el) => {
-      el.classList.remove('dragging');
-    });
-    document.querySelectorAll('[class^="slot-"].active').forEach((el) => {
-      el.classList.remove('active');
-    });
-  }
-
-  private onDragOver(e: DragEvent): void {
-    e.preventDefault();
-    if (e.dataTransfer) {
-      e.dataTransfer.dropEffect = 'move';
-    }
-  }
-
-  private onSlotDragOver(e: DragEvent, slotId: string): void {
-    e.preventDefault();
-    const slot = document.getElementById(`slot-${slotId}`);
-    if (slot && !slot.classList.contains('installed')) {
-      slot.classList.add('active');
-    }
-  }
-
-  private onSlotDragLeave(slotId: string): void {
-    const slot = document.getElementById(`slot-${slotId}`);
-    if (slot) slot.classList.remove('active');
-  }
-
-  private onDrop(e: DragEvent, slotId: string): void {
-    e.preventDefault();
-    const partId = e.dataTransfer?.getData('text/plain');
-    if (!partId) return;
-
-    const slot = document.getElementById(`slot-${slotId}`);
-    if (slot) slot.classList.remove('active');
-
-    this.selectPart(partId);
-
-    if (partId === slotId) {
-      this.installSelectedPart();
-    } else {
-      const data = COMPONENTS.find((c) => c.id === partId)!;
-      const slotData = COMPONENTS.find((c) => c.slot === slotId);
-      const slotName = slotData ? slotData.name : slotId;
-
-      this.showModal(
-        '❌',
-        'Peça no local errado!',
-        `A peça "${data.name}" não pertence a este local. O correto seria conectá-la em: ${slotName}.`,
-        'Selecione a peça no painel lateral e clique em "Instalar" para colocá-la no local correto.'
-      );
-    }
-  }
+  private hideCelebration(): void { document.getElementById("celebration-bg")!.classList.add("hidden"); }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  new ComputerAssemblyApp();
-});
+document.addEventListener("DOMContentLoaded", () => { new App(); });

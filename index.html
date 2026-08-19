@@ -3,127 +3,155 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Montagem de Microcomputadores - Ferramenta Didática</title>
+  <title>Montagem de Microcomputadores</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <header>
-    <div class="header-content">
+    <div class="header-left">
       <h1>Montagem de Microcomputadores</h1>
-      <p class="subtitle">Aprenda a montar e desmontar um computador passo a passo</p>
+      <span class="badge">Aula Pratica</span>
     </div>
-    <div class="mode-toggle">
-      <button id="btn-assemble" class="mode-btn active" title="Modo Montagem">
-        <span class="mode-icon">🔧</span>
-        <span>Montar</span>
-      </button>
-      <button id="btn-disassemble" class="mode-btn" title="Modo Desmontagem">
-        <span class="mode-icon">🔩</span>
-        <span>Desmontar</span>
-      </button>
+    <div class="header-right">
+      <div class="mode-switch">
+        <button class="mode-btn active" id="btn-assemble">🔧 Montar</button>
+        <button class="mode-btn" id="btn-disassemble">🔩 Desmontar</button>
+      </div>
+      <button class="btn-reset" id="btn-reset">↻ Reiniciar</button>
     </div>
   </header>
 
   <main>
-    <aside class="sidebar" id="sidebar">
-      <h2>Peças Disponíveis</h2>
-      <div class="parts-inventory" id="parts-inventory"></div>
-
-      <div class="reset-section">
-        <button id="btn-reset" class="btn-reset">↻ Reiniciar</button>
+    <!-- PAINEL ESQUERDO: Peças -->
+    <aside class="panel-parts">
+      <div class="panel-title">
+        <span class="panel-title-icon">📦</span>
+        Peças Disponíveis
       </div>
+      <div class="parts-list" id="parts-list"></div>
     </aside>
 
-    <section class="workspace">
+    <!-- PAINEL CENTRAL: Workbench -->
+    <section class="panel-workbench">
+      <div class="progress-bar" id="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+        <span class="progress-text" id="progress-text">0 / 6</span>
+      </div>
+
       <div class="workbench" id="workbench">
-        <div class="workbench-label">Mesa de Trabalho</div>
-        <div class="slot-motherboard" id="slot-motherboard" data-slot="motherboard">
-          <span class="slot-label">📍 Coloque a Placa-Mãe aqui</span>
+        <!-- PLACA-MAE: fundo grande com slots internos -->
+        <div class="motherboard-bg" id="motherboard-bg">
+          <div class="mb-label">PLACA-MAE ATX</div>
+
+          <!-- Slot CPU: soquete no centro-esquerda -->
+          <div class="slot-zone slot-cpu" id="slot-cpu" data-slot="cpu">
+            <div class="slot-icon">⬜</div>
+            <div class="slot-name">SOQUETE CPU</div>
+            <div class="slot-hint">Arraste o Processador aqui</div>
+          </div>
+
+          <!-- Slot RAM: ao lado direito do CPU -->
+          <div class="slot-zone slot-ram" id="slot-ram" data-slot="ram">
+            <div class="slot-icon">📐</div>
+            <div class="slot-name">SLOTS RAM</div>
+            <div class="slot-hint">Arraste a Memoria aqui</div>
+          </div>
+
+          <!-- Slot GPU: parte inferior -->
+          <div class="slot-zone slot-gpu" id="slot-gpu" data-slot="gpu">
+            <div class="slot-icon">▶</div>
+            <div class="slot-name">SLOT PCIe x16</div>
+            <div class="slot-hint">Arraste a Placa de Video aqui</div>
+          </div>
+
+          <!-- Slot Storage: canto inferior direito -->
+          <div class="slot-zone slot-storage" id="slot-storage" data-slot="storage">
+            <div class="slot-icon">▪</div>
+            <div class="slot-name">M.2 NVMe</div>
+            <div class="slot-hint">Arraste o SSD aqui</div>
+          </div>
         </div>
-        <div class="slot-cpu" id="slot-cpu" data-slot="cpu">
-          <span class="slot-label">📍 Soquete do Processador</span>
+
+        <!-- FONTE: fora da placa-mae, lado direito -->
+        <div class="slot-zone slot-psu" id="slot-psu" data-slot="psu">
+          <div class="slot-icon">⚡</div>
+          <div class="slot-name">FONTE DE ALIMENTACAO</div>
+          <div class="slot-hint">Arraste a Fonte aqui</div>
         </div>
-        <div class="slot-ram" id="slot-ram" data-slot="ram">
-          <span class="slot-label">📍 Slots de Memória</span>
-        </div>
-        <div class="slot-gpu" id="slot-gpu" data-slot="gpu">
-          <span class="slot-label">📍 Slot PCIe</span>
-        </div>
-        <div class="slot-psu" id="slot-psu" data-slot="psu">
-          <span class="slot-label">📍 Espaço da Fonte</span>
-        </div>
-        <div class="slot-storage" id="slot-storage" data-slot="storage">
-          <span class="slot-label">📍 Bay de Armazenamento</span>
-        </div>
+
+        <!-- Linhas de conexao SVG -->
         <svg class="connections-svg" id="connections-svg"></svg>
       </div>
 
-      <div class="step-indicator" id="step-indicator">
-        <span id="step-text">Passo 1 de 6 - Monte as peças na ordem correta</span>
+      <div class="step-info" id="step-info">
+        Clique em uma peça para ver informacoes e depois instale
       </div>
     </section>
 
-    <section class="info-panel" id="info-panel">
-      <div class="info-placeholder">
-        <p>👆 Clique em uma peça para ver informações</p>
-        <p class="info-hint">Arraste-a para o local correto na placa</p>
+    <!-- PAINEL DIREITO: Info -->
+    <aside class="panel-info" id="panel-info">
+      <div class="info-empty" id="info-empty">
+        <div class="info-empty-icon">👆</div>
+        <p>Selecione uma peça na lista ao lado</p>
+        <p class="info-empty-sub">para ver detalhes e instala-la</p>
       </div>
-      <div class="info-content hidden" id="info-content">
-        <div class="info-header">
-          <span class="info-icon" id="info-icon"></span>
-          <h3 id="info-title"></h3>
-        </div>
-        <div class="info-body">
-          <div class="info-section">
-            <h4>O que é?</h4>
-            <p id="info-description"></p>
+      <div class="info-filled hidden" id="info-filled">
+        <div class="info-badge" id="info-badge"></div>
+        <h2 id="info-title"></h2>
+        <p class="info-category" id="info-category"></p>
+        <div class="info-sections">
+          <div class="info-block">
+            <div class="info-block-title">📖 O que e?</div>
+            <p id="info-desc"></p>
           </div>
-          <div class="info-section">
-            <h4>Função no computador</h4>
-            <p id="info-function"></p>
+          <div class="info-block">
+            <div class="info-block-title">⚙️ Funcao</div>
+            <p id="info-func"></p>
           </div>
-          <div class="info-section">
-            <h4>🔌 Onde conectar?</h4>
-            <p id="info-connection"></p>
+          <div class="info-block">
+            <div class="info-block-title">🔌 Como conectar?</div>
+            <p id="info-conn"></p>
           </div>
-          <div class="info-section">
-            <h4>⚠️ Cuidados ao instalar</h4>
+          <div class="info-block">
+            <div class="info-block-title">⚠️ Cuidados</div>
             <p id="info-care"></p>
           </div>
-          <div class="info-section">
-            <h4>🔬 Curiosidade</h4>
-            <p id="info-curiosity"></p>
+          <div class="info-block">
+            <div class="info-block-title">🔬 Curiosidade</div>
+            <p id="info-curi"></p>
           </div>
-          <button class="btn-install" id="btn-install" disabled>🔧 Instalar esta peça</button>
         </div>
+        <button class="btn-action" id="btn-action">🔧 Instalar esta peca</button>
       </div>
-    </section>
+    </aside>
   </main>
 
-  <div class="tooltip" id="tooltip"></div>
-
-  <div class="modal-overlay hidden" id="modal-overlay">
-    <div class="modal">
-      <div class="modal-icon" id="modal-icon"></div>
+  <!-- MODAL -->
+  <div class="modal-bg hidden" id="modal-bg">
+    <div class="modal-box">
+      <div class="modal-emoji" id="modal-emoji"></div>
       <h2 id="modal-title"></h2>
-      <p id="modal-message"></p>
-      <div id="modal-details"></div>
-      <button class="modal-btn" id="modal-btn">Continuar</button>
+      <p id="modal-msg"></p>
+      <p class="modal-detail" id="modal-detail"></p>
+      <button class="btn-modal" id="btn-modal">OK</button>
     </div>
   </div>
 
-  <div class="celebration hidden" id="celebration">
-    <div class="celebration-content">
+  <!-- CELEBRATION -->
+  <div class="celebration-bg hidden" id="celebration-bg">
+    <div class="celebration-box">
       <div class="confetti" id="confetti"></div>
-      <h2>🎉 Parabéns!</h2>
-      <p>Seu computador foi montado com sucesso!</p>
+      <div class="celebration-emoji">🎉</div>
+      <h2>Parabens! Computador Montado!</h2>
+      <p>Todas as pecas foram instaladas com sucesso</p>
       <div class="final-specs" id="final-specs"></div>
-      <button class="btn-reset-celebration" id="btn-reset-celebration">↻ Montar novamente</button>
+      <button class="btn-modal" id="btn-celebration-close">↻ Montar novamente</button>
     </div>
   </div>
 
   <footer>
-    <p>Ferramenta Didática para Ensino de Montagem de Microcomputadores</p>
+    Ferramenta Didatica — Aula de Manutencao de Microcomputadores
   </footer>
 
   <script src="app.js"></script>
