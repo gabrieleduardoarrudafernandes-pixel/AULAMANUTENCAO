@@ -1,211 +1,211 @@
-# 🖥️ Montagem de Microcomputadores
+<div align="center">
 
-### Ferramenta Didática Interativa para Ensino de Montagem e Desmontagem
+# Montagem de Microcomputadores
+
+### Ferramenta Didatica Interativa para Ensino de Manutencao
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
+![License](https://img.shields.io/badge/Licencia-Educacional-green?style=for-the-badge)
+
+ Uma aplicacao web **100% offline** que ensina de forma **visual e interativa** como montar e desmontar um microcomputador padrao.
+
+ [Como Rodar](#-como-rodar) | [Funcionalidades](#-funcionalidades) | [Componentes](#-componentes) | [Uso em Aula](#-como-usar-em-aula)
+
+</div>
 
 ---
 
-## 📋 O que é?
+## Sumario
 
-Uma aplicação web **100% offline** que ensina de forma **visual, interativa e didática** como montar e desmontar um microcomputador padrão. Ideal para aulas práticas de manutenção de computadores.
-
-> O aluno clica nas peças, aprende o que cada uma faz, onde conectar e como instalar — tudo de forma segura e passo a passo.
-
----
-
-## 🎯 Funcionalidades
-
-### 🔧 Modo Montagem
-O aluno instala as peças **na ordem correta**:
-
-```
-1️⃣  Placa-Mãe  →  Base de todas as conexões
-2️⃣  Processador (CPU)  →  O cérebro do computador
-3️⃣  Memória RAM  →  Memória de trabalho
-4️⃣  Armazenamento (SSD)  →  Memória permanente
-5️⃣  Placa de Vídeo (GPU)  →  Processador gráfico
-6️⃣  Fonte (PSU)  →  Energia do sistema
-```
-
-### 🔩 Modo Desmontagem
-O aluno remove as peças **na ordem inversa** (a mais segura):
-
-```
-1️⃣  Fonte (PSU)  →  Primeiro desconectar a energia!
-2️⃣  Placa de Vídeo (GPU)  →  Remover cabos e placa
-3️⃣  Armazenamento (SSD)  →  Desconectar cabos SATA
-4️⃣  Memória RAM  →  Liberar slots
-5️⃣  Processador (CPU)  →  Remover com cuidado
-6️⃣  Placa-Mãe  →  Última peça a ser removida
-```
-
-### 📚 Painel de Informações
-Ao clicar em qualquer peça, aparece:
-
-| Seção | O que mostra |
-|-------|-------------|
-| 📖 **O que é?** | Descrição simples e didática da peça |
-| ⚙️ **Função no computador** | Para que serve e como funciona |
-| 🔌 **Onde conectar** | Instrução passo a passo de instalação |
-| ⚠️ **Cuidados** | O que NÃO fazer para não quebrar |
-| 🔬 **Curiosidade** | Dado técnico interessante |
-
-### 🎮 Interações
-
-- **Clique** em uma peça → ver informações detalhadas
-- **Arraste e solte** → posicione a peça no slot correto
-- **Botão instalar** → confirma a instalação
-- **Validação automática** → avisa se a ordem ou posição estiver errada
-- **Linhas de conexão** → mostra visualmente os cabos entre peças
-- **Tela de celebração** → confetti + specs ao completar a montagem
+- [O que e?](#-o-que-e)
+- [Funcionalidades](#-funcionalidades)
+- [Componentes](#-componentes)
+- [Como Rodar](#-como-rodar)
+- [Estrutura do Projeto](#-estrutura-do-projeto)
+- [Uso em Aula](#-como-usar-em-aula)
+- [Tecnologias](#-tecnologias)
+- [Acessibilidade](#-acessibilidade)
+- [Historico de Versoes](#-historico-de-versoes)
 
 ---
 
-## 🖥️ Componentes Cobertos
+## O que e?
 
-| Peça | Ícone | Especificação | O que o aluno aprende |
-|------|-------|---------------|----------------------|
-| **Placa-Mãe** | 🖥️ | ATX - Chipset B660 | Base do sistema, onde tudo conecta |
-| **Processador** | 🧠 | Intel Core i5-12400 | Cérebro, cálculos, soquete |
-| **Memória RAM** | 💾 | DDR4 3200MHz - 16GB | Memória de trabalho, slots |
-| **Placa de Vídeo** | 🎮 | NVIDIA RTX 3060 - 12GB | GPU, slot PCIe, cabos de energia |
-| **Fonte** | ⚡ | 650W 80 Plus Gold | Conversão de energia, cabos |
-| **Armazenamento** | 💿 | SSD NVMe 500GB M.2 | Dados permanentes, SATA/M.2 |
+Uma ferramenta didatica que simula a montagem completa de um microcomputador, ensinando o aluno a:
+
+- Conhecer cada componente e sua funcao no sistema
+- Entender a **ordem correta** de instalacao
+- Identificar os **slots e conectores** corretos de cada peca
+- Aprender **cuidados essenciais** ao manusear componentes eletronicos
+- Visualizar as **conexoes electricas** entre as pecas
+
+> O aluno interage clicando e arrastando pecas, aprendendo de forma segura e gamificada.
 
 ---
 
-## 🚀 Como Rodar
+## Funcionalidades
 
-### Pré-requisito
-- [Node.js](https://nodejs.org) instalado (v14+)
+### Dois Modos de Operacao
 
-### Opção 1: Script Automático (Recomendado)
+| Modo | Descricao |
+|------|-----------|
+| **Montagem** | Instala as 6 pecas na ordem correta: Motherboard, CPU, RAM, GPU, SSD, PSU |
+| **Desmontagem** | Remove as pecas na ordem inversa (a mais segura): PSU, GPU, SSD, RAM, CPU, Motherboard |
 
-**No Ubuntu/Linux:**
-```bash
-# Copie a pasta para a máquina de destino
-cp -r projetoaula /home/usuario/
+### Interacao com Drag-and-Drop
 
-# Entre na pasta e execute
-cd projetoaula
-chmod +x iniciar.sh
-./iniciar.sh
-```
+- **Clique** em uma peca para ver informacoes detalhadas
+- **Arraste** a peca ate o slot correto no workbench
+- **Botao Instalar** para confirmar a instalacao
+- **Validacao automatica** — avisa se a ordem ou posicao estiver errada
 
-**No Windows:**
-```
-Copie a pasta para o Windows
-Clique duas vezes em "iniciar.bat"
-Pronto! O navegador abre automaticamente
-```
+### Painel de Informacoes
 
-O que o script faz:
-1. ✅ Verifica se o Node.js está instalado
-2. ✅ Instala as dependências (`npm install`)
-3. ✅ Compila o TypeScript (`npx tsc`)
-4. ✅ Abre o navegador em `http://localhost:8080`
-5. ✅ Inicia o servidor local
+Cada peca possui 6 blocos de informacao:
 
-### Opção 2: Manual
+| Secao | Descricao |
+|-------|-----------|
+| O que e? | Descricao didatica da peca |
+| Funcao | Para que serve no computador |
+| Como conectar | Passo a passo de instalacao |
+| Cuidados | O que NAO fazer para nao danificar |
+| Curiosidade | Dado tecnico interessante |
+| Tabela Comparativa | Opcoes de formatacao, marcas e especificacoes |
+
+### Recursos Visuais
+
+- **Slots interativos** com feedback visual (hover, dragover, instalado)
+- **Linhas de conexao SVG** que aparecem entre pecas instaladas
+- **Barra de progresso** com contagem em tempo real
+- **Modal de feedback** a cada instalacao/remocao
+- **Tela de celebracao** com confetti e especificacoes finais
+- **Balloon informativo** sobre Dual Channel ao selecionar RAM
+
+---
+
+## Componentes
+
+| Peca | Icone | Especificacao | Funcao Principal |
+|------|-------|---------------|------------------|
+| Placa-Mae | :desktop_computer: | ATX - Chipset B660 | Base do sistema, interliga todos os componentes |
+| Processador | :brain: | Intel Core i5-12400 | Cerebro do computador, executa instrucoes |
+| Memoria RAM | :floppy_disk: | DDR4 3200MHz - 16GB (2x8GB) | Memoria de trabalho temporaria |
+| Placa de Video | :video_game: | NVIDIA RTX 3060 - 12GB | Processamento grafico |
+| Fonte | :zap: | 650W 80 Plus Gold | Conversao e distribuicao de energia |
+| Armazenamento | :cd: | SSD NVMe 500GB M.2 | Dados permanentes do sistema |
+
+---
+
+## Como Rodar
+
+### Requisitos
+
+- [Node.js](https://nodejs.org/) v14+ (para compilar TypeScript)
+- Python 3 (para o servidor local)
+- Qualquer navegador moderno (Chrome, Firefox, Edge)
+
+### Instalacao Rapida
 
 ```bash
-cd projetoaula
-npm install          # Instala dependências
-npx tsc              # Compila TypeScript → JavaScript
-python3 -m http.server 8080  # Sobe o servidor
+# Clone o repositorio
+git clone https://github.com/gabrieleduardoarrudafernandes-pixel/AULAMANUTENCAO.git
+cd AULAMANUTENCAO
+
+# Instale dependencias e compile
+npm install
+npx tsc
+
+# Inicie o servidor
+python3 -m http.server 8080
 ```
 
-Acesse: `http://localhost:8080`
+Acesse: **http://localhost:8080**
 
----
+### Comandos NPM
 
-## 📁 Estrutura do Projeto
-
-```
-projetoaula/
-├── 📄 index.html          ← Página principal (layout 3 colunas)
-├── 🎨 style.css           ← Estilos responsivos e didáticos
-├── 📝 app.ts              ← Código TypeScript (código fonte)
-├── ⚙️ app.js              ← JavaScript compilado (gerado pelo tsc)
-├── 📦 package.json        ← Dependências e scripts npm
-├── 🔧 tsconfig.json       ← Configuração do TypeScript
-├── 🪟 iniciar.bat         ← Instalador automático (Windows)
-├── 🐧 iniciar.sh          ← Instalador automático (Ubuntu/Linux)
-└── 📋 .gitignore          ← Arquivos ignorados pelo Git
+```bash
+npm run build    # Compila TypeScript para JavaScript
+npm run serve    # Inicia servidor na porta 8080
+npm start        # Compila + inicia servidor
 ```
 
 ---
 
-## 🎓 Como Usar em Aula
-
-### Fluxo da Aula
+## Estrutura do Projeto
 
 ```
-1. Abra o projeto no projetor/tela compartilhada
-2. Explique cada peça clicando nela (painel lateral)
-3. Comece pelo Modo Montagem
-4. Peça para os alunos dizerem qual é a próxima peça
-5. Clique em "Instalar" para mostrar a instalação
-6. Repita até completar as 6 peças
-7. Mostre as linhas de conexão entre peças
-8. Faça a tela de celebração com as specs
-9. Volte ao Modo Desmontagem para revisar
-10. Repita até os alunos memorizarem a ordem
+.
+├── index.html          # Pagina principal (layout 3 colunas)
+├── style.css           # Estilos, animacoes e responsividade
+├── app.ts              # Codigo fonte TypeScript
+├── app.js              # JavaScript compilado (gerado pelo tsc)
+├── package.json        # Dependencias e scripts
+├── tsconfig.json       # Configuracao do TypeScript
+├── README.md           # Esta documentacao
+└── .gitignore          # Arquivos ignorados pelo Git
 ```
+
+---
+
+## Como Usar em Aula
+
+### Fluxo Sugerido
+
+1. **Abra o projeto** no projetor ou tela compartilhada
+2. **Exploracao inicial** — deixe os alunos clicarem em cada peca para ver as informacoes
+3. **Montagem guiada** — va instalando cada peca, perguntando qual e a proxima
+4. **Arraste e solte** — deixe os alunos tentarem arrastar para slots errados para ver os erros didaticos
+5. **Linhas de conexao** — mostre como as pecas se comunicam entre si
+6. **Celebracao** — ao completar, mostre as especificacoes do computador montado
+7. **Desmontagem** — revirava a ordem para reforar o aprendizado
+8. **Repeticao** — use os botoes Montar/Desmontar para praticar
 
 ### Dicas para o Professor
 
-- **Antes de tudo:** Deixe os alunos explorarem clicando nas peças
-- **Ordem de montagem:** Enfatize POR QUE a ordem importa
-- **Cuidados:** Mostre os avisos de cada peça (anti-estática, etc.)
-- **Arraste e solte:** Deixe os alunos tentarem arrastar para slots errados → mostra erro didático
-- **Repetição:** Use os botões Montar/Desmontar para repetir o exercício
+- Enfatize **POR QUE** a ordem de montagem importa (ex: CPU so depois da motherboard)
+- Mostre os **avisos de cuidado** de cada peca (anti-estatica, nao force soquetes, etc.)
+- Use as **tabelas comparativas** para discutir opcoes de hardware
+- O **balloon de Dual Channel** e um otimo ponto de partida para aulas de memoria
+- Projeto funciona **100% offline** — ideal para laboratorios sem internet
 
 ---
 
-## 🌐 Acessibilidade
+## Tecnologias
 
-- Funciona em **qualquer navegador moderno** (Chrome, Firefox, Edge)
-- **100% offline** — não precisa de internet após instalar
-- Textos em **português brasileiro**
-- Interface **responsiva** — funciona em telas grandes e projetores
-- **Didático** — linguagem simples para pessoas leigas
-
----
-
-## 🛠️ Tecnologias
-
-| Tecnologia | Uso |
-|------------|-----|
-| **HTML5** | Estrutura da página |
-| **CSS3** | Estilos, animações, responsividade |
-| **TypeScript** | Lógica da aplicação (compilado para JS) |
-| **SVG** | Linhas de conexão entre peças |
-| **Node.js** | Compilação do TypeScript |
+| Tecnologia | Uso no Projeto |
+|------------|----------------|
+| HTML5 | Estrutura semantica da pagina |
+| CSS3 | Layout responsivo, animacoes, efeitos visuais |
+| TypeScript | Logica da aplicacao com tipagem forte |
+| SVG | Linhas de conexao animadas entre pecas |
+| DOM API | Interatividade via HTML5 Drag and Drop |
 
 ---
 
-## 📸 Capturas de Tela
+## Acessibilidade
 
-> *Interface com 3 painéis:*
-> - **Esquerda:** Lista de peças disponíveis (clique ou arraste)
-> - **Centro:** Mesa de trabalho visual com slots para cada peça
-> - **Direita:** Painel de informações detalhadas
+- Funciona em **qualquer navegador moderno** (Chrome, Firefox, Edge, Safari)
+- **100% offline** — nao precisa de internet apos clonar
+- Textos em **portugues brasileiro** com linguagem didatica
+- Interface **responsiva** — funciona em telas grandes, projetores e tablets
+- **Nao requer instalacao** — basta compilar e abrir no navegador
 
 ---
 
-## 📄 Licença
+## Historico de Versoes
 
-Projeto educacional para uso em sala de aula.
+| Versao | Descricao |
+|--------|-----------|
+| v2.1 | Correcao do drag-and-drop, crash na motherboard, melhoria do layout |
+| v2.0 | Layout redesenhado com slots visuais, motherboard transparente, tabelas comparativas |
+| v1.0 | Sistema interativo basico de montagem com informacoes por peca |
 
 ---
 
 <div align="center">
 
-**Desenvolvido para ensino de manutenção de microcomputadores** 🔧
+**Desenvolvido como ferramenta didatica para aulas de Manutencao de Microcomputadores**
 
 </div>
