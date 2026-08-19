@@ -203,9 +203,10 @@ class App {
         // Drag-drop on each slot
         document.querySelectorAll(".slot-zone").forEach((el) => {
             const slotId = el.dataset.slot;
-            el.addEventListener("dragover", (e) => { e.preventDefault(); el.classList.add("dragover"); });
+            el.addEventListener("dragover", (e) => { e.stopPropagation(); e.preventDefault(); el.classList.add("dragover"); });
             el.addEventListener("dragleave", () => el.classList.remove("dragover"));
             el.addEventListener("drop", (e) => {
+                e.stopPropagation();
                 e.preventDefault();
                 el.classList.remove("dragover");
                 const partId = e.dataTransfer.getData("text/plain");
@@ -437,6 +438,8 @@ class App {
     }
     /* ---- WORKBENCH PLACEMENT ---- */
     placeOnWorkbench(id) {
+        if (id === "motherboard")
+            return;
         const wb = document.getElementById("workbench");
         const slot = document.getElementById(`slot-${id}`);
         const p = PARTS.find((x) => x.id === id);

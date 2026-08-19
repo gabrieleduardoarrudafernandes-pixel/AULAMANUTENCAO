@@ -25,7 +25,7 @@ body{
 /* ---- HEADER ---- */
 header{
   background:linear-gradient(135deg,#2563eb,#1d4ed8);
-  color:#fff;padding:.8rem 1.5rem;
+  color:#fff;padding:.9rem 1.5rem;
   display:flex;justify-content:space-between;align-items:center;
   flex-wrap:wrap;gap:.6rem;
   box-shadow:0 2px 12px rgba(37,99,235,.3);
@@ -55,29 +55,30 @@ header h1{font-size:1.3rem;font-weight:700}
 
 /* ---- MAIN GRID ---- */
 main{
-  display:grid;grid-template-columns:220px 1fr 280px;
-  gap:.8rem;padding:.8rem;flex:1;min-height:0;
+  display:grid;grid-template-columns:240px 1fr 300px;
+  gap:1rem;padding:1rem;flex:1;min-height:0;
 }
 
 /* ---- PANEL PARTS ---- */
 .panel-parts{
-  background:#fff;border-radius:var(--r);padding:.8rem;
+  background:#fff;border-radius:var(--r);padding:1rem;
   box-shadow:var(--sh);overflow-y:auto;max-height:calc(100vh - 120px);
 }
 .panel-title{
-  font-size:.85rem;font-weight:700;color:var(--g700);
+  font-size:.9rem;font-weight:700;color:var(--g700);
   display:flex;align-items:center;gap:.4rem;
-  padding-bottom:.5rem;margin-bottom:.6rem;
+  padding-bottom:.6rem;margin-bottom:.7rem;
   border-bottom:2px solid var(--g200);
 }
-.parts-list{display:flex;flex-direction:column;gap:.4rem}
+.parts-list{display:flex;flex-direction:column;gap:.5rem}
 
 /* Part card */
 .part-card{
   display:flex;align-items:center;gap:.6rem;
-  padding:.6rem;border-radius:10px;
+  padding:.7rem;border-radius:10px;
   border:2px solid var(--g200);cursor:pointer;
   transition:.2s;position:relative;
+  background:#fff;
 }
 .part-card:hover{border-color:#2563eb;background:#eff6ff;transform:translateX(3px)}
 .part-card.selected{border-color:#2563eb;background:#dbeafe;box-shadow:0 0 0 3px rgba(37,99,235,.15)}
@@ -104,7 +105,7 @@ main{
 /* ---- PROGRESS ---- */
 .progress-bar{
   background:#fff;border-radius:20px;padding:.4rem;
-  box-shadow:var(--sh);position:relative;height:28px;overflow:hidden;
+  box-shadow:var(--sh);position:relative;height:30px;overflow:hidden;
 }
 .progress-fill{
   position:absolute;left:0;top:0;bottom:0;
@@ -120,7 +121,7 @@ main{
 /* ---- WORKBENCH ---- */
 .workbench{
   background:#fff;border-radius:var(--r);box-shadow:var(--sh);
-  flex:1;position:relative;min-height:420px;
+  flex:1;position:relative;min-height:500px;
   overflow:hidden;
   background-image:radial-gradient(circle,var(--g200) 1px,transparent 1px);
   background-size:24px 24px;
@@ -129,7 +130,7 @@ main{
 /* ---- MOTHERBOARD BACKGROUND ---- */
 .motherboard-bg{
   position:absolute;
-  left:3%;top:6%;width:62%;height:88%;
+  left:2%;top:4%;width:66%;height:92%;
   background:var(--c-mb-bg);
   border:3px solid var(--c-mb);
   border-radius:12px;
@@ -154,10 +155,11 @@ main{
   align-items:center;justify-content:center;
   gap:.2rem;
   transition:.3s;cursor:default;
-  background:rgba(255,255,255,.6);
+  background:rgba(255,255,255,.7);
+  backdrop-filter:blur(2px);
 }
-.slot-zone .slot-icon{font-size:1.6rem;opacity:.4;transition:.3s}
-.slot-zone .slot-name{font-size:.65rem;font-weight:700;color:var(--g500);text-align:center;letter-spacing:.5px}
+.slot-zone .slot-icon{font-size:1.8rem;opacity:.4;transition:.3s}
+.slot-zone .slot-name{font-size:.7rem;font-weight:700;color:var(--g500);text-align:center;letter-spacing:.5px}
 .slot-zone .slot-hint{font-size:.55rem;color:var(--g400);text-align:center;display:none}
 
 /* Hover */
@@ -182,14 +184,14 @@ main{
 .slot-zone.installed .slot-hint{display:none}
 
 /* Slot positions — ON the motherboard */
-.slot-cpu{left:14%;top:18%;width:18%;height:22%}
-.slot-ram{left:38%;top:14%;width:16%;height:30%}
-.slot-gpu{left:10%;top:55%;width:42%;height:20%}
-.slot-storage{left:38%;top:62%;width:24%;height:22%}
+.slot-cpu{left:10%;top:15%;width:22%;height:24%}
+.slot-ram{left:40%;top:10%;width:22%;height:32%}
+.slot-gpu{left:10%;top:52%;width:38%;height:18%}
+.slot-storage{left:54%;top:55%;width:24%;height:25%}
 
 /* PSU — OUTSIDE motherboard */
 .slot-psu{
-  right:2%;top:6%;width:30%;height:45%;
+  right:2%;top:6%;width:28%;height:45%;
 }
 
 /* ---- PLACED COMPONENTS ---- */
@@ -218,15 +220,16 @@ main{
 
 /* ---- STEP INFO ---- */
 .step-info{
-  background:#fff;border-radius:var(--r);padding:.6rem 1rem;
+  background:#fff;border-radius:var(--r);padding:.7rem 1.2rem;
   box-shadow:var(--sh);text-align:center;
   font-size:.85rem;color:var(--g600);font-weight:500;
-  min-height:36px;display:flex;align-items:center;justify-content:center;
+  min-height:40px;display:flex;align-items:center;justify-content:center;
+  margin-top:.8rem;
 }
 
 /* ---- PANEL INFO ---- */
 .panel-info{
-  background:#fff;border-radius:var(--r);padding:1rem;
+  background:#fff;border-radius:var(--r);padding:1.2rem;
   box-shadow:var(--sh);overflow-y:auto;max-height:calc(100vh - 120px);
 }
 .info-empty{
@@ -390,9 +393,9 @@ footer{
 /* ---- RESPONSIVE ---- */
 @media(max-width:900px){
   main{grid-template-columns:1fr;grid-template-rows:auto 1fr auto}
-  .panel-parts{max-height:160px}
+  .panel-parts{max-height:180px}
   .parts-list{flex-direction:row;flex-wrap:wrap}
-  .part-card{flex:1;min-width:130px}
-  .workbench{min-height:300px}
-  .panel-info{max-height:300px}
+  .part-card{flex:1;min-width:140px}
+  .workbench{min-height:350px}
+  .panel-info{max-height:320px}
 }
